@@ -29,7 +29,7 @@ public class Categoria implements Serializable {
 	private int id;
 	@Column(name = "nombre")
 	private String nombre;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="id")
     @IndexColumn(name="id_categoria")
 	private List<Alimento> alimentos;

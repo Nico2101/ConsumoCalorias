@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<%@ include file="incluir/cabecera.jsp" %>
+		<%@ include file="cabecera.jsp" %>
 	</head>
 
 	<body class="no-skin">
 		<div id="navbar" class="navbar navbar-default          ace-save-state">
-			<%@ include file="incluir/barraSuperior.jsp" %>
+			<%@ include file="barraSuperior.jsp" %>
 		</div>
 
 		<div class="main-container ace-save-state" id="main-container">
@@ -18,11 +18,11 @@
 			</script>
 
 			<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
-				<script type="text/javascript">
+				<script type="javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 
-			<%@ include file="incluir/barraLateral.jsp" %>
+			<%@ include file="barraLateral.jsp" %>
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -30,8 +30,7 @@
 			</div>
 
 			<div class="main-content">
-				<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+				
 <div class="main-content-inner">
 	<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 		<ul class="breadcrumb">
@@ -113,7 +112,7 @@
 			</div><!-- /.main-content -->
 
 			<div class="footer">
-				<%@ include file="incluir/pieDePagina.jsp" %>
+				<%@ include file="pieDePagina.jsp" %>
 			</div>
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
@@ -122,6 +121,6 @@
 		</div><!-- /.main-container -->
 
 		
-		<%@ include file="incluir/scripts.jsp" %>
+		<%@ include file="scripts.jsp" %>
 	</body>
 </html>

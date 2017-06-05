@@ -27,13 +27,13 @@ public class Consumo implements Serializable {
 	private Date fecha;
 	@Column(name = "porcion")
 	private float porcion;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_alimento")
 	private Alimento alimento;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_tipo")
 	private Tipo tipo;
 	

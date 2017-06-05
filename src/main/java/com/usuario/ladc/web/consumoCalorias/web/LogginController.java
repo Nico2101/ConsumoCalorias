@@ -69,7 +69,7 @@ public class LogginController {
         
     	if(u != null){
     		logger.info("Ir a inicio");
-    		ModelAndView i = new ModelAndView("contenido");
+    		ModelAndView i = new ModelAndView("inicio");
     		i.addObject("usuario", u);
     		
     		return i;
