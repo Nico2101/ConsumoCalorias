@@ -36,13 +36,13 @@ public class Alimento implements Serializable {
 	private float cantidad;
 	@Column(name = "medida")
 	private String medida;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="id")
     @IndexColumn(name="id_alimento")
 	private List<Consumo> consumos;

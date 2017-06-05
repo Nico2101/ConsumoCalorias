@@ -33,11 +33,11 @@ public class Usuario implements Serializable {
     private Integer peso;
     @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name="id")
     @IndexColumn(name="id_usuario")
     private List<Alimento> alimentos;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name="id")
     @IndexColumn(name="id_usuario")
     private List<Consumo> consumos;
