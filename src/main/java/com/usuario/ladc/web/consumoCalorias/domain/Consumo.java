@@ -20,20 +20,20 @@ public class Consumo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    	@Column(name = "id")
+    	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(name = "fecha")
 	private Date fecha;
 	@Column(name = "porcion")
 	private float porcion;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_alimento")
 	private Alimento alimento;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_tipo")
 	private Tipo tipo;
 	
