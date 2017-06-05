@@ -42,9 +42,9 @@ public class LogginController {
         this.usuarioDao = usuarioDao;
     }
     
-    @RequestMapping(value="loggin.htm", method = RequestMethod.GET)
+    @RequestMapping(value="loggin2.htm", method = RequestMethod.GET)
     public ModelAndView recargarFormularioLoggin(HttpServletRequest request, boolean incorrecto) throws ServletException{
-    	ModelAndView x = new ModelAndView("loggin");
+    	ModelAndView x = new ModelAndView("loggin2");
     	x.addObject(new FormularioLoggin());
     	if(incorrecto)
     		x.addObject("usuarioNoEncontrado", "El usuario no fue encontrado");
@@ -53,7 +53,7 @@ public class LogginController {
     
     
     
-    @RequestMapping(value="loggin.htm", method = RequestMethod.POST)
+    @RequestMapping(value="loggin2.htm", method = RequestMethod.POST)
     public ModelAndView onSubmit(@Valid FormularioLoggin formulario, BindingResult result) throws ServletException, IOException	
     {
     	
