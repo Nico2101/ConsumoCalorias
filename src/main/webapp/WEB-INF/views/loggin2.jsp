@@ -91,7 +91,7 @@
 
 														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" value="Ingresar">
 															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">x</span>
+															<span class="bigger-110">Ingresar</span>
 														</button>
 													</div>
 
