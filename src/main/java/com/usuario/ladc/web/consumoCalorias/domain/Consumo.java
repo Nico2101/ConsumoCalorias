@@ -20,8 +20,8 @@ public class Consumo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    	@Column(name = "id")
+    	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(name = "fecha")
 	private Date fecha;
