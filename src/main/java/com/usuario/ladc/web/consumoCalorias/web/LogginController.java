@@ -69,7 +69,7 @@ public class LogginController {
         
     	if(u != null){
     		logger.info("Ir a inicio");
-    		ModelAndView i = redireccionarAInicio(null, null);
+    		ModelAndView i = new ModelAndView("inicio");
     		i.addObject("usuario", u);
     		//i.addObject("cantidadAlimentos", u.getAlimentos().size());
     		return i;
@@ -77,7 +77,9 @@ public class LogginController {
          logger.info("Ir a Loggin");
         return recargarFormularioLoggin(null,true);
     }
-    
+   
+
+   
     @RequestMapping(value="inicio.htm")
     public ModelAndView redireccionarAInicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

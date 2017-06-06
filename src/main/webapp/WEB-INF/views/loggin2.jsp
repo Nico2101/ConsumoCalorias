@@ -2,6 +2,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<style>
+   .error { color: red; }
+ </style>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
@@ -71,14 +74,23 @@
 														<span class="block input-icon input-icon-right">
 															<form:input type="text" class="form-control" path="correo" />
 															<i class="ace-icon fa fa-user"></i>
+															
 														</span>
+														
+      													    
+      													
 													</label>
+													<form:errors path="correo" cssClass="error"/>
 
 													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
+									"src/main/webapp/WEB-INF/views/inicioDeEjemplo.jsp"					<span class="block input-icon input-icon-right">
 															<form:password class="form-control" path="clave" />
 															<i class="ace-icon fa fa-lock"></i>
+															 
 														</span>
+														<td width="60%">
+      														    <form:errors path="clave" cssClass="error"/>
+       															</td>
 													</label>
 
 													<div class="space"></div>
@@ -88,10 +100,10 @@
 															<input type="checkbox" class="ace" />
 															
 														</label>
-
+														 <span class="error">${usuarioNoEncontrado}</span>
 														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" value="Ingresar">
 															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">x</span>
+															<span class="bigger-110">Ingresar</span>
 														</button>
 													</div>
 
