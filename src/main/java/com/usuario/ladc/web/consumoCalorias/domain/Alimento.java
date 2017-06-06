@@ -1,8 +1,9 @@
 package com.usuario.ladc.web.consumoCalorias.domain;
 
 import java.io.Serializable;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,8 +26,8 @@ public class Alimento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    	@Column(name = "id")
+   	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(name = "nombre")
 	private String nombre;
@@ -36,16 +37,14 @@ public class Alimento implements Serializable {
 	private float cantidad;
 	@Column(name = "medida")
 	private String medida;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="id")
-    @IndexColumn(name="id_alimento")
-	private List<Consumo> consumos;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy= "alimento")
+	private Set<Consumo> consumos = new HashSet<Consumo>(0);
 	
 	public final static String GRAMOS = "gr";
 	public final static String MILILITROS = "ml";
@@ -106,11 +105,11 @@ public class Alimento implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public List<Consumo> getConsumos() {
+	public Set<Consumo> getConsumos() {
 		return consumos;
 	}
 
-	public void setConsumos(List<Consumo> consumos) {
+	public void setConsumos(Set<Consumo> consumos) {
 		this.consumos = consumos;
 	}
 	
