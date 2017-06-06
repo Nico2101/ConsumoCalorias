@@ -2,12 +2,14 @@ package com.usuario.ladc.web.consumoCalorias.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 
 import javax.persistence.*;
 
 import org.hibernate.annotations.IndexColumn;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="usuario") 
@@ -33,14 +35,10 @@ public class Usuario implements Serializable {
     private Integer peso;
     @Column(name = "fecha_nacimiento")
     private Date fechaNacimiento;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name="id")
-    @IndexColumn(name="id_usuario")
-    private List<Alimento> alimentos;
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name="id")
-    @IndexColumn(name="id_usuario")
-    private List<Consumo> consumos;
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy= "usuario")
+    private Set<Alimento> alimentos = new HashSet<Alimento>(0);
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy= "usuario")
+    private Set<Consumo> consumos = new HashSet<Consumo>(0);
     
     public int calcularEdad(){
     	//Obtener la edad del usuario dada la fecha de nacimiento
@@ -111,19 +109,19 @@ public class Usuario implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
-	public List<Alimento> getAlimentos() {
+	public Set<Alimento> getAlimentos() {
 		return alimentos;
 	}
 	
-	public void setAlimentos(List<Alimento> alimentos) {
+	public void setAlimentos(Set<Alimento> alimentos) {
 		this.alimentos = alimentos;
 	}
 	
-	public List<Consumo> getConsumos() {
+	public Set<Consumo> getConsumos() {
 		return consumos;
 	}
 
-	public void setConsumos(List<Consumo> consumos) {
+	public void setConsumos(Set<Consumo> consumos) {
 		this.consumos = consumos;
 	}
 	

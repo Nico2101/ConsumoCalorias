@@ -22,7 +22,7 @@ public class AlimentoDao {
     public void setEntityManager(EntityManager em) {
         this.em = em;
     }
-
+    
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
     public List<Alimento> getListaAlimentos() {

@@ -71,7 +71,7 @@ public class LogginController {
     		logger.info("Ir a inicio");
     		ModelAndView i = redireccionarAInicio(null, null);
     		i.addObject("usuario", u);
-    		
+    		//i.addObject("cantidadAlimentos", u.getAlimentos().size());
     		return i;
         }
          logger.info("Ir a Loggin");

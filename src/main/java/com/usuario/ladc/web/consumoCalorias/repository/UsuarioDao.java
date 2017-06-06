@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +34,10 @@ public class UsuarioDao {
     @SuppressWarnings("unchecked")
     public Usuario getUsuario(String correo, String clave) {
     	List<Usuario> resultado = em.createQuery("from Usuario u where u.correo = '"+correo+"' and u.clave = '"+clave+"'").getResultList();
-    	if (resultado.size() == 1)	return resultado.get(0);
+    	if (resultado.size() == 1){
+    		return  resultado.get(0);
+    		
+    	}	
 		return null;
     }
 

@@ -31,7 +31,7 @@
 	Id: ${usuario.id} </br>
 	Nombre: ${usuario.nombre} ${usuario.apellido}</br>
 	Correo: ${usuario.correo}</br>
-	Lista de alimentos:</br>
+	Lista de alimentos: <c:out value="${usuario.alimentos.size()}"/> alimentos en la lista </br>
 	<ul>
 		<c:forEach items="${usuario.alimentos}" var="alimento">
 			Id: ${alimento.id} </br>
