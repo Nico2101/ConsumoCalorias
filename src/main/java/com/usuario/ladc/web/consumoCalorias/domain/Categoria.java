@@ -1,8 +1,9 @@
 package com.usuario.ladc.web.consumoCalorias.domain;
 
 import java.io.Serializable;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,15 +25,13 @@ public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   	@Column(name = "id")
+    	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(name = "nombre")
 	private String nombre;
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="id")
-    @IndexColumn(name="id_categoria")
-	private List<Alimento> alimentos;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy= "categoria")
+	private Set<Alimento> alimentos = new HashSet<Alimento>(0);
 	
 	public int getId() {
 		return id;
@@ -50,11 +49,11 @@ public class Categoria implements Serializable {
 		this.nombre = nombre;
 	}
 	
-	public List<Alimento> getAlimentos() {
+	public Set<Alimento> getAlimentos() {
 		return alimentos;
 	}
 	
-	public void setAlimentos(List<Alimento> alimentos) {
+	public void setAlimentos(Set<Alimento> alimentos) {
 		this.alimentos = alimentos;
 	}
 
