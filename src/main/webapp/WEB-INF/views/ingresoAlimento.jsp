@@ -94,7 +94,7 @@
 							</div>
 							<div class="col-xs-2">
 								<span class="block input-icon input-icon-right">
-									<form:input type="date" class="form-control" path="fecha" placeholder="frfr"/>
+									<form:input type="date" class="form-control" path="fecha" placeholder="DD-MM-AAAA"/>
 								</span>
       							<form:errors path="fecha" cssClass="error"/>
 							</div>
@@ -104,7 +104,7 @@
 							<div class="col-xs-2">
 								<form:select path="tipo">
 									<form:option value="NONE" label="Seleccione Tipo Alimento"/>
- 									<form:options items="${tipoLista}" />
+ 									<form:options items="${listaTipos}" />
 								</form:select>
       							<form:errors path="porcion" cssClass="error"/>
 							</div>

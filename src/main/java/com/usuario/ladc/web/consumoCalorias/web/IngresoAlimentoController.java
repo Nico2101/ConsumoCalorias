@@ -1,14 +1,14 @@
 package com.usuario.ladc.web.consumoCalorias.web;
+import java.util.List;
 import com.usuario.ladc.web.consumoCalorias.domain.*;
 import com.usuario.ladc.web.consumoCalorias.repository.*;
 import com.usuario.ladc.web.consumoCalorias.repository.ConsumoDao;
 import com.usuario.ladc.web.consumoCalorias.service.*;
 
-import java.awt.List;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -23,6 +23,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,7 +42,7 @@ public class IngresoAlimentoController {
     @Autowired
     private ConsumoDao consumoDao;
 
-    public void setUsuarioDao(ConsumoDao consumoDao) {
+    public void getConsumoDao(ConsumoDao consumoDao) {
         this.consumoDao = consumoDao;
     }
     
@@ -49,20 +50,15 @@ public class IngresoAlimentoController {
     public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request, boolean incorrecto) throws ServletException{
     	ModelAndView x = new ModelAndView("ingresoAlimento");
     	x.addObject(new FormularioIngresoAlimento());
-    	if(incorrecto)
-    		x.addObject("porcionNoEncontrada", "La porcion no fue encontrado");
+    
     	return x;
     }
     
-    
-    @ModelAttribute("tipoLista")
-    public Map<String,String> tipoAlimentoLista() {
-    	Map<String,String> tipo = new LinkedHashMap<String,String>();
-    	tipo.put("Desayuno", "Desayuno");
-    	tipo.put("Almuerzo", "Almuerzo");
-    	tipo.put("Cena", "Cena");
-    	tipo.put("Colacion", "Colacion");
-     return tipo;
+    @ModelAttribute("listaTipos")
+    public  List<String> listaTipos(){
+    	List<String> t = consumoDao.getListaTipos();
+    	return t;
+    	
     }
     
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.POST)
@@ -73,8 +69,14 @@ public class IngresoAlimentoController {
         }
 		
         float porcion = formulario.getPorcion();
+        System.out.println(porcion);
         Alimento alimento = formulario.getAlimento();
         Date fecha = formulario.getFecha();
+        Tipo tipo = formulario.getTipo();
+        
+        
+      //Date fecha1 = new Date(0);
+       // consumoDao.insertarConsumo(1.2, null, 1, 2 , 1, 1);
         
         //Consumo c = consumoDao.saveConsumo(consumo);
         String c = "a";
