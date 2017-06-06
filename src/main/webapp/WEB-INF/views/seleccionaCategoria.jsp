@@ -5,8 +5,6 @@
 <html>
 	<head>
 		<%@ include file="cabecera.jsp" %>
-		  <!-- HTML meta refresh URL redirection -->
-  
 	</head>
 
 	<body class="no-skin">
@@ -32,7 +30,7 @@
 			</div>
 
 			<div class="main-content">
-				
+		<!--inicio-->		
 <div class="main-content-inner">
 	<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 		<ul class="breadcrumb">
@@ -81,7 +79,7 @@
 							</div>
 
 							<div class="infobox-data">
-								<span class="infobox-text">	Calorias 43242</span>
+								<span class="infobox-text">	Calorias XDDDDDDDDd</span>
 
 								<div class="infobox-content">
 									<span class="bigger-200"></span>
@@ -91,20 +89,56 @@
 						</div>
 
 						<div class="space-8"></div>
-						
-						
 
-<h2>Datos del usuario</h2>
-<p class="lead">
-	Id: ${usuario.id} </br>
-	Nombre: ${usuario.nombre} ${usuario.apellido}</br>
-	Correo: ${usuario.correo}</br>
-</p>
-					
-<form:form >
-	
-</form:form>
-				
+						 <p>
+                                       
+										<a href="#" class="btn btn-app btn-primary">
+											<i class="ace-icon glyphicon glyphicon-tint bigger-230"></i>
+											Lacteo
+                                            
+											
+										</a>
+
+										<a href="#" class="btn btn-app btn-success">
+											<i class="ace-icon  glyphicon glyphicon-leaf bigger-230"></i>
+											Verdura
+										</a>
+                                           
+
+										<button class="btn btn-app btn-warning">
+											<i class="ace-icon glyphicon glyphicon-grain bigger-230"></i>
+											Cereal
+										</button>
+                                        <button class="btn btn-app btn-danger">
+											<i class="ace-icon glyphicon glyphicon-apple bigger-230"></i>
+											Fruta
+										</button>
+                                        
+                                        </p>
+                                        <p>
+                                              <button class="btn btn-app btn-pink ">
+											<i class="ace-icon glyphicon glyphicon-ice-lolly bigger-230"></i>
+											Golosina
+										</button>
+                                            
+                                        <button class="btn btn-app btn-danger">
+											<i class="ace-icon glyphicon glyphicon-piggy-bank bigger-230"></i>
+											Carne
+										</button>
+                                            
+                                        <a href="#" class="btn btn-app btn-primary">
+											<i class="ace-icon glyphicon glyphicon-tint bigger-230"></i>
+											Bebida
+                                        </a>
+                                        
+                                          
+                                        <button class="btn btn-app btn-purple">
+											<i class="ace-icon fa fa-undo bigger-230"></i>
+											Pastas
+										</button>
+									
+                                       
+                                            </p>
 
 					</div>
 
@@ -119,8 +153,7 @@
 			<!-- PAGE CONTENT ENDS -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->
-	</div><!-- /.page-content -->
-</div>
+	
 			</div><!-- /.main-content -->
 
 			<div class="footer">
@@ -132,7 +165,6 @@
 			</a>
 		</div><!-- /.main-container -->
 
-		
-		<%@ include file="scripts.jsp" %>
+	
 	</body>
 </html>

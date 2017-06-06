@@ -50,16 +50,12 @@ public class LogginController {
     		x.addObject("usuarioNoEncontrado", "El usuario no fue encontrado");
     	return x;
     }
-    
-    
-    
+  
     @RequestMapping(value="loggin2.htm", method = RequestMethod.POST)
     public ModelAndView onSubmit(@Valid FormularioLoggin formulario, BindingResult result) throws ServletException, IOException	
     {
     	
-        if (result.hasErrors()) {
-            return recargarFormularioLoggin(null,true);
-        }
+       
 		
         String usuario = formulario.getCorreo();
         String clave = formulario.getClave();
@@ -68,8 +64,7 @@ public class LogginController {
         
         
     	if(u != null){
-    		logger.info("Ir a inicio");
-    		ModelAndView i = new ModelAndView("inicio");
+    		ModelAndView i = new ModelAndView("buscaAlimento");
     		i.addObject("usuario", u);
     		
     		return i;
@@ -80,10 +75,10 @@ public class LogginController {
    
 
    
-    @RequestMapping(value="inicio.htm")
+ @RequestMapping(value="inicio.htm")
     public ModelAndView redireccionarAInicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+	
     	String variable = "Si está leyendo esto, es porque aprendio a pasar variables a traves del controlador 4";
     	
     	String [] arreglo = new String[3];
@@ -100,7 +95,7 @@ public class LogginController {
     	ArrayList<Usuario> usuarios/* = prepararUsuariosConSusAlimentos()*/ = null;
     	
     	
-    	ModelAndView m = new ModelAndView("inicio");
+    	ModelAndView m = new ModelAndView("buscaAlimento");
     	m.addObject("variable", variable);
     	m.addObject("arreglo", arreglo);
     	m.addObject("lista",lista);
@@ -108,7 +103,7 @@ public class LogginController {
     	//m.addObject("usuario", usuario);
     	//m.addObject("clave", clave);
         logger.info("Returning hello view with " + variable);
-
+        
         return m;
     }
     
