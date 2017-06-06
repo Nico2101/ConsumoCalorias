@@ -28,6 +28,11 @@ public class ConsumoDao {
     public List<Consumo> getListaConsumos() {
         return em.createQuery("from Consumo c order by c.id").getResultList();
     }
+    
+    @SuppressWarnings("unchecked")
+	public List<Tipo> getListaTipos() {
+        return em.createQuery("select nombre from Tipo t order by t.id").getResultList();
+    }
 
     @Transactional(readOnly = false)
     public void saveConsumo(Consumo u) {
