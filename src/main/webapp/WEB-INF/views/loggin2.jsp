@@ -110,7 +110,7 @@
 													<div class="space-2"></div>
 												</fieldset>
 											</form:form>
-<a href="<c:url value="Inicio.htm"/>">Home</a>
+
 											<div class="social-or-login center">
 												
 											</div>
