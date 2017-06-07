@@ -70,10 +70,11 @@
 							<div class="col-sm-4" align=center>
 								<label>Alimento:</label>
 							</div>
-							<div class="col-xs-3">
-								<span class="block input-icon input-icon-right">
-									<input id="tags" type="text" class="form-control" />
-								</span>
+							<div class="col-xs-4">
+								<form:select path="alimento">
+									<form:option value="NONE" label="------Seleccione Alimento------  "/>
+ 									<form:options items="${listaAlimentos}" />
+								</form:select>
       							<form:errors path="alimento" cssClass="error"/>
 							</div>
 							<br>
@@ -95,7 +96,7 @@
 							</div>
 							<div class="col-xs-3">
 								<span class="block input-icon input-icon-right">
-									<form:input type="date" class="form-control" path="fecha" placeholder="DD-MM-AAAA"/>
+									<form:input type="date" class="form-control" path="fecha" placeholder="AAAA-MM-DD"/>
 								</span>
       							<form:errors path="fecha" cssClass="error"/>
 							</div>
@@ -106,10 +107,10 @@
 							</div>
 							<div class="col-xs-3">
 								<form:select path="tipo">
-									<form:option value="NONE" label="Seleccione Tipo Alimento"/>
+									<form:option value="NONE" label="--Seleccione Tipo Alimento---"/>
  									<form:options items="${listaTipos}" />
 								</form:select>
-      							<form:errors path="porcion" cssClass="error"/>
+      							<form:errors path="tipo" cssClass="error"/>
 							</div>
 						</div>
 						<br>
@@ -242,4 +243,3 @@
 		</script>
 	</body>
 </html>
-			

@@ -56,7 +56,7 @@
 							</div>
 							<div class="col-xs-3">
                                     <select id="food" class="">
-											    <option value="Lacteos">Seleccione una Opción</option>
+											    <option value="Lacteos">Seleccione Categoría Alimento</option>
 												<option value="Lacteos">Lacteos</option>
 												<option value="Frutas">Frutas</option>
 												<option value="Verduras">Verduras</option>
@@ -89,7 +89,7 @@
 							<div class="col-xs-3">
                                  
                                     <select id="food" class="">
-											    <option value="Lacteos">Seleccione una Opción</option>
+											    <option value="Lacteos">-Seleccione Medida Alimento--</option>
 												<option value="Lacteos">Gramos</option>
 												<option value="Frutas">Mililitros</option>
 												

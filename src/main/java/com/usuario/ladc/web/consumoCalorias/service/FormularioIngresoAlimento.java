@@ -53,6 +53,4 @@ public class FormularioIngresoAlimento {
 	public Tipo getTipo() {
 		return tipo;
 	}
-	
-
 }

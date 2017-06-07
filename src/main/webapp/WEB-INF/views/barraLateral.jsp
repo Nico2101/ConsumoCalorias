@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <ul class="nav nav-list">
 			<li class="active">
-				<a href="#">
+				<a href="inicio.htm">
 					<i class="menu-icon fa fa-home"></i>
 					<span class="menu-text"> Inicio </span>
 				</a>
@@ -13,7 +13,7 @@
 
 
 			<li class="">
-				<a href="ingresoAlimento.htm" class="">
+				<a href="IngresoNuevoAlimento.htm" class="">
 						<i class="menu-icon glyphicon glyphicon-apple"></i>
 					<span class="menu-text">
 						Ingresar Alimento

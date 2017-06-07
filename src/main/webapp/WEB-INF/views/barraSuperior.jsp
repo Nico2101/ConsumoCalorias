@@ -13,7 +13,7 @@
 	</button>
 
 	<div class="navbar-header pull-left">
-		<a href="index.html" class="navbar-brand">
+		<a href="inicio.htm" class="navbar-brand">
 			<small>
 				<i class="glyphicon glyphicon-apple"></i>
 				Nutrición y Vida Saludable

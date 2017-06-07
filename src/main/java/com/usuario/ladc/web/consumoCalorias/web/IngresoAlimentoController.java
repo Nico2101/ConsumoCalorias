@@ -58,7 +58,12 @@ public class IngresoAlimentoController {
     public  List<String> listaTipos(){
     	List<String> t = consumoDao.getListaTipos();
     	return t;
-    	
+    }
+    
+    @ModelAttribute("listaAlimentos")
+    public  List<String> listaAlimentos(){
+    	List<String> a = consumoDao.getListaAlimentos();
+    	return a;
     }
     
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.POST)
@@ -91,3 +96,4 @@ public class IngresoAlimentoController {
         return recargarFormularioIngresoAlimento(null,true);
     }    
 }
+

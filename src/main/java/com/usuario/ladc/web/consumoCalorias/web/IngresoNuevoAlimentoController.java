@@ -57,8 +57,13 @@ public class IngresoNuevoAlimentoController {
     @ModelAttribute("listaTipos")
     public  List<String> listaTipos(){
     	List<String> t = consumoDao.getListaTipos();
-    	return t;
-    	
+    	return t;	
+    }
+    
+    @ModelAttribute("listaAlimentos")
+    public  List<String> listaAlimentos(){
+    	List<String> a = consumoDao.getListaAlimentos();
+    	return a;
     }
     
     @RequestMapping(value="IngresoNuevoAlimento.htm", method = RequestMethod.POST)
