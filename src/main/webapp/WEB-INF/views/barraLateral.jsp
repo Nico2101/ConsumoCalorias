@@ -13,7 +13,7 @@
 
 
 			<li class="">
-				<a href="IngresoNuevoAlimento.htm" class="">
+				<a href="ingresoAlimento.htm" class="">
 						<i class="menu-icon glyphicon glyphicon-apple"></i>
 					<span class="menu-text">
 						Ingresar Alimento

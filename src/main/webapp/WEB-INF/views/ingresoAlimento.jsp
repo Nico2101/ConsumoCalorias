@@ -70,11 +70,10 @@
 							<div class="col-sm-4" align=center>
 								<label>Alimento:</label>
 							</div>
-							<div class="col-xs-4">
-								<form:select path="alimento">
-									<form:option value="NONE" label="------Seleccione Alimento------  "/>
- 									<form:options items="${listaAlimentos}" />
-								</form:select>
+							<div class="col-xs-3">
+								<span class="block input-icon input-icon-right">
+									<input id="tags" type="text" class="form-control"/>
+								</span>
       							<form:errors path="alimento" cssClass="error"/>
 							</div>
 							<br>

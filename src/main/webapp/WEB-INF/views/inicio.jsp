@@ -81,22 +81,22 @@
 						<div class="space-8"></div>
 
 						<a href="ingresoAlimento.htm" class="btn btn-app btn-primary">
-							<i class="ace-icon fa fa-pencil-square-o bigger-230"></i>
+							<i class="ace-icon glyphicon glyphicon-apple bigger-230"></i>
 							Desayuno
 							
 						</a>
 
 						<a href="ingresoAlimento.htm" class="btn btn-app btn-success">
-							<i class="ace-icon fa fa-refresh bigger-230"></i>
+							<i class="ace-icon glyphicon glyphicon-leaf bigger-230"></i>
 							Almuerzo
 						</a>
 
 						<a href="ingresoAlimento.htm"  class="btn btn-app btn-warning">
-							<i class="ace-icon fa fa-undo bigger-230"></i>
+							<i class="ace-icon glyphicon glyphicon-piggy-bank bigger-230"></i>
 							Cena
 						</a>
                                     <a href="ingresoAlimento.htm" class="btn btn-app btn-danger">
-							<i class="ace-icon glyphicon glyphicon-apple bigger-230"></i>
+							<i class="ace-icon glyphicon glyphicon-ice-lolly bigger-230"></i>
 							Colación
 						</a>
 
