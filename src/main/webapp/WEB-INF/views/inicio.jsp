@@ -99,21 +99,9 @@
 							<i class="ace-icon glyphicon glyphicon-ice-lolly bigger-230"></i>
 							Colación
 						</a>
-
 					</div>
-
-					
-
-
 				</div><!-- /.row -->
-
-
 			<!-- PAGE CONTENT ENDS -->			
-
-				
-
-		
-
 			<!-- PAGE CONTENT ENDS -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->
