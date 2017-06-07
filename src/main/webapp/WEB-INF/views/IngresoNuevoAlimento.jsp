@@ -114,7 +114,8 @@
                         	<button type="submit" class="btn btn-success" value="Ingresar">Ingresar</button>
                     	</div>
                             	</form:form>
-                            
+                         <br>
+						<br>   
                          
                             
 
