@@ -13,12 +13,8 @@
 
 
 			<li class="">
-				<a href="#" class="">
-					<i class="menu-icon fa fa-desktop"></i>
-					<span class="menu-text">
-						Ingresar Alimento
-					</span>
-
+				<a href="ingresoAlimento.htm" class="">
+					<i class="menu-icon fa fa-desktop">  Ingresar Alimento</i>
 					<b class="arrow fa fa-angle-down"></b>
 				</a>
 			</li>
