@@ -6,7 +6,7 @@
 		<ul class="breadcrumb">
 			<li>
 				<i class="ace-icon fa fa-home home-icon"></i>
-				<a href="#">Home</a>
+				<a href="#">Inicio</a>
 			</li>
 			<li class="active">Dashboard</li>
 		</ul><!-- /.breadcrumb -->
@@ -14,7 +14,7 @@
 		<div class="nav-search" id="nav-search">
 			<form class="form-search">
 				<span class="input-icon">
-					<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
 					<i class="ace-icon fa fa-search nav-search-icon"></i>
 				</span>
 			</form>
@@ -49,7 +49,7 @@
 							</div>
 
 							<div class="infobox-data">
-								<span class="infobox-text">	Calorias 43242</span>
+								<span class="infobox-text">	Calorias XDDDDDDDDd</span>
 
 								<div class="infobox-content">
 									<span class="bigger-200"></span>
@@ -59,11 +59,27 @@
 						</div>
 
 						<div class="space-8"></div>
-<form:form method="post" commandName="catDesayuno">
-									
-<input class="btn btn-app btn-primary" type="submit" value="Desayuno"><i class="ace-icon fa fa-pencil-square-o bigger-230"></i>
-				
-</form:form>
+
+						<a href="#" class="btn btn-app btn-primary">
+							<i class="ace-icon fa fa-pencil-square-o bigger-230"></i>
+							Desayuno
+							
+						</a>
+
+						<a href="#" class="btn btn-app btn-success">
+							<i class="ace-icon fa fa-refresh bigger-230"></i>
+							Almuerzo
+						</a>
+
+						<button class="btn btn-app btn-warning">
+							<i class="ace-icon fa fa-undo bigger-230"></i>
+							Cena
+						</button>
+                                    <button class="btn btn-app btn-danger">
+							<i class="ace-icon glyphicon glyphicon-apple bigger-230"></i>
+							Colación
+						</button>
+
 					</div>
 
 					<div class="vspace-12-sm"></div>

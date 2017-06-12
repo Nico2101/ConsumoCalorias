@@ -29,53 +29,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class LogginController {
+public class InicioController {
 
     protected final Log logger = LogFactory.getLog(getClass());
-    //private String usuario;
-    //private String clave;
-    
-    @Autowired
-    private UsuarioDao usuarioDao;
 
-    public void setUsuarioDao(UsuarioDao usuarioDao) {
-        this.usuarioDao = usuarioDao;
-    }
-    
-    @RequestMapping(value="loggin2.htm", method = RequestMethod.GET)
-    public ModelAndView recargarFormularioLoggin(HttpServletRequest request, boolean incorrecto) throws ServletException{
-    	ModelAndView x = new ModelAndView("loggin2");
-    	x.addObject(new FormularioLoggin());
-    	if(incorrecto)
-    		x.addObject("usuarioNoEncontrado", "El usuario no fue encontrado");
+
+    @RequestMapping(value="inicio.htm", method = RequestMethod.GET)
+    public ModelAndView recargarFormularioLoggin(HttpServletRequest request) throws ServletException{
+    	ModelAndView x = new ModelAndView("inicio");
+    	
     	return x;
     }
   
-    @RequestMapping(value="loggin2.htm", method = RequestMethod.POST)
-    public ModelAndView onSubmit(@Valid FormularioLoggin formulario, BindingResult result) throws ServletException, IOException	
+    @RequestMapping(value="inicio.htm", method = RequestMethod.POST)
+    public ModelAndView onSubmit( BindingResult result) throws ServletException, IOException	
     {
     	
-       
-		
-        String usuario = formulario.getCorreo();
-        String clave = formulario.getClave();
-        
-        Usuario u = usuarioDao.getUsuario(usuario, clave);
-        
-        
-    	if(u != null){
     		ModelAndView i = new ModelAndView("inicio");
-    		i.addObject("usuario", u);
+    		
     		
     		return i;
         }
-         logger.info("Ir a Loggin");
-        return recargarFormularioLoggin(null,true);
+        
     }
-   
-
-   
-
-    
-    
-}

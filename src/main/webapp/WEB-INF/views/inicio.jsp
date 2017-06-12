@@ -5,6 +5,8 @@
 <html>
 	<head>
 		<%@ include file="cabecera.jsp" %>
+		  <!-- HTML meta refresh URL redirection -->
+  
 	</head>
 
 	<body class="no-skin">
@@ -30,21 +32,15 @@
 			</div>
 
 			<div class="main-content">
-				
-<div class="main-content-inner">
+		<!--inicio contenido-->
+	<div class="main-content-inner">
 	<div class="breadcrumbs ace-save-state" id="breadcrumbs">
-		<ul class="breadcrumb">
-			<li>
-				<i class="ace-icon fa fa-home home-icon"></i>
-				<a href="#">Home</a>
-			</li>
-			<li class="active">Dashboard</li>
-		</ul><!-- /.breadcrumb -->
+		
 
 		<div class="nav-search" id="nav-search">
 			<form class="form-search">
 				<span class="input-icon">
-					<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
 					<i class="ace-icon fa fa-search nav-search-icon"></i>
 				</span>
 			</form>
@@ -54,13 +50,7 @@
 	<div class="page-content">
 		
 		<div class="page-header">
-			<h1>
-				Dashboard
-				<small>
-					<i class="ace-icon fa fa-angle-double-right"></i>
-					overview &amp; stats
-				</small>
-			</h1>
+		
 		</div><!-- /.page-header -->
 
 		<div class="row">
@@ -70,16 +60,16 @@
 
 				<div class="row">
 					<div class="space-6"></div>
-                             	<div class="col-sm-7 infobox-container">
+                             	<div class="col-sm-10 infobox-container">
 					<div class="infobox infobox-blue2">
 							<div class="infobox-progress">
-								<div class="easy-pie-chart percentage" data-percent="88" data-size="40">
+								<div class="easy-pie-chart percentage" data-percent="65" data-size="40">
 									<span class="percent">42</span>%
 								</div>
 							</div>
 
 							<div class="infobox-data">
-								<span class="infobox-text">	Calorias 43242</span>
+								<span class="infobox-text">	Calorias 1233</span>
 
 								<div class="infobox-content">
 									<span class="bigger-200"></span>
@@ -87,23 +77,31 @@
 								</div>
 							</div>
 						</div>
-
+						
 						<div class="space-8"></div>
-<form:form method="post" commandName="catDesayuno">
-									
-<input class="btn btn-app btn-primary" type="submit" value="Desayuno"><i class="ace-icon fa fa-pencil-square-o bigger-230"></i>
-				
-</form:form>
+
+						<a href="ingresoAlimento.htm" class="btn btn-app btn-primary">
+							<i class="ace-icon glyphicon glyphicon-apple bigger-230"></i>
+							Desayuno
+							
+						</a>
+
+						<a href="ingresoAlimento.htm" class="btn btn-app btn-success">
+							<i class="ace-icon glyphicon glyphicon-leaf bigger-230"></i>
+							Almuerzo
+						</a>
+
+						<a href="ingresoAlimento.htm"  class="btn btn-app btn-warning">
+							<i class="ace-icon glyphicon glyphicon-piggy-bank bigger-230"></i>
+							Cena
+						</a>
+                                    <a href="ingresoAlimento.htm" class="btn btn-app btn-danger">
+							<i class="ace-icon glyphicon glyphicon-ice-lolly bigger-230"></i>
+							Colación
+						</a>
 					</div>
-
-					<div class="vspace-12-sm"></div>
-
 				</div><!-- /.row -->
-
-				<div class="hr hr32 hr-dotted"></div>
-
-				<div class="hr hr32 hr-dotted"></div>
-
+			<!-- PAGE CONTENT ENDS -->			
 			<!-- PAGE CONTENT ENDS -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->
