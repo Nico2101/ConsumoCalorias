@@ -83,7 +83,8 @@
 													<form:errors path="correo" cssClass="error"/>
 
 													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
+												<span class="block input-icon input-icon-right">
+
 															<form:password class="form-control" path="clave" />
 															<i class="ace-icon fa fa-lock"></i>
 															 

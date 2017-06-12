@@ -13,7 +13,7 @@
 	</button>
 
 	<div class="navbar-header pull-left">
-		<a href="index.html" class="navbar-brand">
+		<a href="inicio.htm" class="navbar-brand">
 			<small>
 				<i class="glyphicon glyphicon-apple"></i>
 				Nutrición y Vida Saludable
@@ -30,7 +30,7 @@
 					<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
 					<span class="user-info">
 						<small>Bienvenido,</small>
-						Jason
+						${usuario.nombre} ${ usuario.apellido}
 					</span>
 
 					<i class="ace-icon fa fa-caret-down"></i>

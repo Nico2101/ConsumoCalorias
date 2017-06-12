@@ -25,11 +25,10 @@ public class AlimentoDao {
     
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
-    public List<Alimento> getListaAlimentos() {
-        return em.createQuery("from Alimento a order by a.id").getResultList();
+    public List<Alimento> getListaAlimentos(Integer usuario) {
+        return em.createQuery("from Alimento a where a.id_usuario= '"+usuario+"'a order by a.id").getResultList();
     }
     
-
     @Transactional(readOnly = false)
     public void saveAlimento(Alimento a) {
         em.merge(a);

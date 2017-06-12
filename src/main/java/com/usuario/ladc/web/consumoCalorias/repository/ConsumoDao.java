@@ -36,6 +36,10 @@ public class ConsumoDao {
         return em.createQuery("select nombre from Tipo t order by t.id").getResultList();
     }
     
+    @SuppressWarnings("unchecked")
+	public List<String> getListaAlimentos() {
+        return em.createQuery("select nombre from Alimento a order by a.id").getResultList();
+    }
    
 	public void insertarConsumo(int id, Date fecha, float porcion, int id_usuario, int id_tipo, int id_alimento){
 		System.out.println("fefe" + fecha);

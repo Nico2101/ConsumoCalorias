@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.usuario.ladc.web.consumoCalorias.domain.Alimento;
 import com.usuario.ladc.web.consumoCalorias.domain.Tipo;
 
-public class FormularioIngresoAlimento {
+public class FormularioIngresoNuevoAlimento {
 
     /** Logger for this class and subclasses */
     protected final Log logger = LogFactory.getLog(getClass());
@@ -53,4 +53,6 @@ public class FormularioIngresoAlimento {
 	public Tipo getTipo() {
 		return tipo;
 	}
+	
+
 }

@@ -7,40 +7,50 @@
 		<%@ include file="cabecera.jsp" %>
 		<meta name="description" content="Restyling jQuery UI Widgets and Elements" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		
 	</head>
 
 	<body class="no-skin">
 		<div id="navbar" class="navbar navbar-default          ace-save-state">
 			<%@ include file="barraSuperior.jsp" %>
 		</div>
+
 		<div class="main-container ace-save-state" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
+
 			<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
 				<script type="javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
+
 			<%@ include file="barraLateral.jsp" %>
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
 			</div>
+
 			<div class="main-content">
 				
 <div class="main-content-inner">
 	<div class="breadcrumbs ace-save-state" id="breadcrumbs">
-	
-	
-	
-	
-	
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+			<li class="active">Dashboard</li>
+		</ul><!-- /.breadcrumb -->
+
 		<div class="nav-search" id="nav-search">
-			 
-                      
-						<a class="btn btn-app btn-purple btn-xs " href="IngresoNuevoAlimento.htm" ><i class="ace-icon glyphicon glyphicon-plus bigger-120"></i></a>
-                    	
+			<form class="form-search">
+				<span class="input-icon">
+					<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<i class="ace-icon fa fa-search nav-search-icon"></i>
+				</span>
+			</form>
 		</div><!-- /.nav-search -->
 	</div>
 
@@ -48,81 +58,45 @@
 		
 		<div class="page-header">
 			<h1>
-				Ingreso de Alimentos 
-				
+				Dashboard
+				<small>
+					<i class="ace-icon fa fa-angle-double-right"></i>
+					overview &amp; stats
+				</small>
 			</h1>
-			
-	
 		</div><!-- /.page-header -->
-<div class="space-12"></div>
 
-					
-								
 		<div class="row">
-			<div class="col-xs-20" aling=center>
+			<div class="col-xs-12">
 				<!-- PAGE CONTENT BEGINS -->
-		
-				
-					<form:form method="post" commandName="formularioIngresoAlimento">
-					<br>
-						<div class="row">
-						
-							<div class="col-sm-4" align=center>
-								<label>Alimento:</label>
-							</div>
-							<div class="col-xs-3">
-								<span class="block input-icon input-icon-right">
-									<input id="tags" type="text" class="form-control"/>
-								</span>
-      							<form:errors path="alimento" cssClass="error"/>
-							</div>
-							<br>
-						<br>
-							
-							<div class="col-xs-4" align=center>
-								<label>Porción:</label>
-							</div>
-							<div class="col-xs-3">
-								<span class="block input-icon input-icon-right">
-									<form:input type="number" step="0.1" class="form-control" path="porcion" placeholder="Porción"/>
-								</span>
-      							<form:errors path="porcion" cssClass="error"/>
-							</div>
-							<br>
-						<br>
-							<div class="col-xs-4" align=center>
-								<label>Fecha:</label>
-							</div>
-							<div class="col-xs-3">
-								<span class="block input-icon input-icon-right">
-									<form:input type="date" class="form-control" path="fecha" placeholder="AAAA-MM-DD"/>
-								</span>
-      							<form:errors path="fecha" cssClass="error"/>
-							</div>
-							<br>
-						<br>
-							<div class="col-xs-4" align=center>
-								<label>Tipo:</label>
-							</div>
-							<div class="col-xs-3">
-								<form:select path="tipo">
-									<form:option value="NONE" label="--Seleccione Tipo Alimento---"/>
- 									<form:options items="${listaTipos}" />
-								</form:select>
-      							<form:errors path="tipo" cssClass="error"/>
-							</div>
-						</div>
-						<br>
-							
-						</div>
-						<br>
-						 <div class="col-s-12" align=center>
-                        	<button type="submit" class="btn btn-success" value="Ingresar">Ingresar</button>
-                    	</div>
-						</form:form>
-					<div class="vspace-12-sm"></div>
+			
 
-				</div><!-- /.row -->
+							<div class="space-12"></div>
+
+								<div class="row">
+									<div class="col-sm-6">
+										<h3 class="header blue lighter smaller">
+											<i class="ace-icon fa fa-terminal smaller-90"></i>
+											Autocomplete
+										</h3>
+
+										<div class="row">
+											<div class="col-sm-8 col-md-7">
+												<input id="tags" type="text" class="form-control" />
+												<div class="space-4"></div>
+
+												<input id="search" type="text" class="form-control" placeholder="Type 'a' or 'h'" />
+											</div>
+										</div>
+
+								
+									</div><!-- ./col -->
+
+								
+									
+								</div><!-- ./row -->
+
+				<div class="hr hr32 hr-dotted"></div>
 
 				<div class="hr hr32 hr-dotted"></div>
 
@@ -242,3 +216,4 @@
 		</script>
 	</body>
 </html>
+		

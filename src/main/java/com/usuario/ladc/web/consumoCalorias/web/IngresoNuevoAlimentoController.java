@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class IngresoAlimentoController {
+public class IngresoNuevoAlimentoController {
 
     protected final Log logger = LogFactory.getLog(getClass());
     
@@ -46,10 +46,10 @@ public class IngresoAlimentoController {
         this.consumoDao = consumoDao;
     }
     
-    @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.GET)
-    public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request, boolean incorrecto) throws ServletException{
-    	ModelAndView x = new ModelAndView("ingresoAlimento");
-    	x.addObject(new FormularioIngresoAlimento());
+    @RequestMapping(value="IngresoNuevoAlimento.htm", method = RequestMethod.GET)
+    public ModelAndView recargarFormularioIngresoNuevoAlimento(HttpServletRequest request, boolean incorrecto) throws ServletException{
+    	ModelAndView x = new ModelAndView("IngresoNuevoAlimento");
+    	x.addObject(new FormularioIngresoNuevoAlimento());
     
     	return x;
     }
@@ -57,7 +57,7 @@ public class IngresoAlimentoController {
     @ModelAttribute("listaTipos")
     public  List<String> listaTipos(){
     	List<String> t = consumoDao.getListaTipos();
-    	return t;
+    	return t;	
     }
     
     @ModelAttribute("listaAlimentos")
@@ -66,11 +66,11 @@ public class IngresoAlimentoController {
     	return a;
     }
     
-    @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.POST)
-    public ModelAndView onSubmit(@Valid FormularioIngresoAlimento formulario, BindingResult result) throws ServletException, IOException	
+    @RequestMapping(value="IngresoNuevoAlimento.htm", method = RequestMethod.POST)
+    public ModelAndView onSubmit(@Valid FormularioIngresoNuevoAlimento formulario, BindingResult result) throws ServletException, IOException	
     {
         if (result.hasErrors()) {
-            return recargarFormularioIngresoAlimento(null,true);
+            return recargarFormularioIngresoNuevoAlimento(null,true);
         }
 		
         float porcion = formulario.getPorcion();
@@ -93,7 +93,6 @@ public class IngresoAlimentoController {
     		return i;
         }
          logger.info("Ir a Loggin");
-        return recargarFormularioIngresoAlimento(null,true);
+        return recargarFormularioIngresoNuevoAlimento(null,true);
     }    
 }
-
