@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
@@ -50,7 +51,7 @@ public class IngresoAlimentoController {
     public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request, boolean incorrecto) throws ServletException{
     	ModelAndView x = new ModelAndView("ingresoAlimento");
     	x.addObject(new FormularioIngresoAlimento());
-    
+    	x.addObject("usuario",request.getSession(true).getAttribute("usuario"));
     	return x;
     }
     
