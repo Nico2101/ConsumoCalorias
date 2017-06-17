@@ -121,5 +121,4 @@
 		
 		<%@ include file="scripts.jsp" %>
 	</body>
->>>>>>> 51cac68d3702dc47b5343b10fb631169abbfaaf7
 </html>

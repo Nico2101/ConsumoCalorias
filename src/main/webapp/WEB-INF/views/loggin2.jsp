@@ -8,7 +8,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Login Page - Ace Admin</title>
+		<title>Bienvenido a Nutrición y Vida Saludable.</title>
 
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -68,49 +68,39 @@
 
 											<div class="space-6"></div>
 
-											<form:form method="post" commandName="formularioLoggin">
-												<fieldset>
-													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<form:input type="text" class="form-control" path="correo" />
-															<i class="ace-icon fa fa-user"></i>
-															
-														</span>
-														
-      													    
-      													
-													</label>
-													<form:errors path="correo" cssClass="error"/>
-
-													<label class="block clearfix">
-												<span class="block input-icon input-icon-right">
-
-															<form:password class="form-control" path="clave" />
-															<i class="ace-icon fa fa-lock"></i>
-															 
-														</span>
-														<td width="60%">
-      														    <form:errors path="clave" cssClass="error"/>
-       															</td>
-													</label>
-
-													<div class="space"></div>
-
-													<div class="clearfix">
-														<label class="inline">
-															<input type="checkbox" class="ace" />
-															
+												<form:form method="post" commandName="formularioLoggin">
+													<fieldset>
+														<label class="block clearfix">
+															<span class="block input-icon input-icon-right">
+																<form:input type="text" class="form-control" path="correo" placeholder="ingrese correo"/>
+																<i class="ace-icon fa fa-user"></i>	
+															</span>	<br>
+															<form:errors path="correo" cssClass="btn btn-danger btn-sm popover-error"/>
 														</label>
-														 <span class="error">${usuarioNoEncontrado}</span>
-														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" value="Ingresar">
-															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">Ingresar</span>
-														</button>
-													</div>
-
-													<div class="space-2"></div>
-												</fieldset>
-											</form:form>
+														
+														<label class="block clearfix">
+															<span class="block input-icon input-icon-right">
+																<form:password class="form-control" path="clave" placeholder="ingrese contraseña"/>
+																<i class="ace-icon fa fa-lock"></i>				 
+															</span> <br>
+	      													<form:errors path="clave" cssClass="btn btn-danger btn-sm popover-error"/>
+														</label>
+														<div class="space"></div>
+														<div class="clearfix">
+															<label class="inline">
+																<input type="checkbox" class="ace" />
+															</label> <br>
+															 <c:if test="${usuarioNoEncontrado}">
+															 	<div class="btn btn-danger btn-sm popover-error">El usuario no fue encontrado.</div>
+															 </c:if>
+															<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" value="Ingresar">
+																<i class="ace-icon fa fa-key"></i>
+																<span class="bigger-110">Ingresar</span>
+															</button>
+														</div>
+														<div class="space-2"></div>
+													</fieldset>
+												</form:form>
 
 											<div class="social-or-login center">
 												
@@ -210,14 +200,14 @@
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="ContraseÃ±a" />
+															<input type="password" class="form-control" placeholder="Contraseña" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Repetir contraseÃ±a" />
+															<input type="password" class="form-control" placeholder="Repetir contraseña" />
 															<i class="ace-icon fa fa-retweet"></i>
 														</span>
 													</label>

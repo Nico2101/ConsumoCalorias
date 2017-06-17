@@ -33,8 +33,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LogginController {
 
     protected final Log logger = LogFactory.getLog(getClass());
-    //private String usuario;
-    //private String clave;
+
     
     @Autowired
     private UsuarioDao usuarioDao;
@@ -44,36 +43,46 @@ public class LogginController {
     }
     
     @RequestMapping(value="loggin2.htm", method = RequestMethod.GET)
-    public ModelAndView recargarFormularioLoggin(HttpServletRequest request, boolean incorrecto) throws ServletException{
-    	ModelAndView x = new ModelAndView("loggin2");
-    	x.addObject(new FormularioLoggin());
-    	if(incorrecto)
-    		x.addObject("usuarioNoEncontrado", "El usuario no fue encontrado");
-    	return x;
+    public ModelAndView recargarFormularioLoggin(HttpServletRequest request, FormularioLoggin formularioAnterior, boolean incorrecto) throws ServletException{
+    	logger.info("Cargando formulario del loggin");
+    	ModelAndView vista = new ModelAndView("loggin2");
+    	if(formularioAnterior != null)	vista.addObject(formularioAnterior);
+    	else	vista.addObject(new FormularioLoggin());
+    	vista.addObject("usuarioNoEncontrado", incorrecto);
+    	return vista;
     }
   
     @RequestMapping(value="loggin2.htm", method = RequestMethod.POST)
-    public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, @Valid FormularioLoggin formulario, BindingResult result) throws ServletException, IOException	
+    public ModelAndView formularioCargado(@Valid FormularioLoggin formulario, BindingResult result, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException	
     {
-    	
+    	if (result.hasErrors()) {
+            return recargarFormularioLoggin(null, formulario, false);
+        }
         String usuario = formulario.getCorreo();
         String clave = formulario.getClave();
         
         Usuario u = usuarioDao.getUsuario(usuario, clave);
         
-        
-    	if(u != null){
-    		ModelAndView i = new ModelAndView("inicio");
-    		i.addObject("usuario", u);
+        if(u != null){
+    		ModelAndView vista = new ModelAndView("inicio");
     		HttpSession session = request.getSession(true);
 			session.setAttribute("usuario", u);
-    		return i;
+			vista.addObject("usuario", u);
+			logger.info("Ir a Loggin");
+    		return vista;
         }
-         logger.info("Ir a Loggin");
-        return recargarFormularioLoggin(null,true);
+        return recargarFormularioLoggin(request,null,true);
+    
     }
    
-
+    @RequestMapping(value="salir.htm")
+    public ModelAndView cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException{
+    	ModelAndView vista = new ModelAndView("salir");
+    	HttpSession sesion = request.getSession(true);
+    	
+    	sesion.removeAttribute("usuario");
+    	return vista;
+    }
    
 
     

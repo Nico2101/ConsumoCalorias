@@ -1,6 +1,8 @@
 package com.usuario.ladc.web.consumoCalorias.service;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.validation.constraints.*;
 
@@ -17,40 +19,53 @@ public class FormularioIngresoAlimento {
     protected final Log logger = LogFactory.getLog(getClass());
     
     @NotEmpty(message="La fecha no ha sido especificada")
-    private Date fecha;
+    private String fecha;
     
-    @NotEmpty(message="La porción no ha sido especificada")
-    private float porcion;
+    @NotNull(message="La porción no ha sido especificada")
+    private Float porcion;
     
-    @NotEmpty(message="El tipo no ha sido especificado")
-    private Tipo tipo;
+    @Min(value=0,message="El tipo no ha sido especificado")
+    private Integer tipo;
     
-    @NotEmpty(message="El alimento no ha sido especificado")
-    private Alimento alimento;
+    @Min(value=0,message="El alimento no ha sido especificado")
+    private Integer alimento;
     
-    public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha ) {
+    
+    
+    public void setFecha(String fecha) {
 		this.fecha = fecha;
-		logger.info("fecha set to " + fecha);
 	}
+    
+    public String getFecha(){
+    	return this.fecha;
+    }
 	
-	public float getPorcion() {
+	public Float getPorcion() {
 		return porcion;
 	}
 
-	public void setPorcion(float porcion) {
+	public void setPorcion(Float porcion) {
 		this.porcion = porcion;
 		logger.info("porcion set to " + porcion);
 	}
 
-	public Alimento getAlimento() {
+	public Integer getAlimento() {
 		return alimento;
 	}
 	
-	public Tipo getTipo() {
+	public Integer getTipo() {
 		return tipo;
 	}
+
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+		logger.info("tipo set to " + tipo);
+	}
+
+	public void setAlimento(Integer alimento) {
+		this.alimento = alimento;
+		logger.info("alimento set to " + alimento);
+	}
+	
+	
 }

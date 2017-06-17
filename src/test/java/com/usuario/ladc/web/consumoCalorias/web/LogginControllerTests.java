@@ -18,9 +18,9 @@ public class LogginControllerTests {
     @Test
     public void testQueRedireccionaAlLoggin() throws Exception{		
         LogginController controller = new LogginController();
-        ModelAndView modelAndView = controller.recargarFormularioLoggin(null, false);		
+        ModelAndView modelAndView = controller.recargarFormularioLoggin(null,null, false);		
         
-        assertEquals("loggin", modelAndView.getViewName());
+        assertEquals("loggin2", modelAndView.getViewName());
         assertNotNull(modelAndView.getModel());
         
     }
@@ -31,9 +31,9 @@ public class LogginControllerTests {
     	FormularioLoggin form = new FormularioLoggin();
     	form.setCorreo("mmunocan@conscal.cl");
     	form.setClave("holaMundo");
-    	//ModelAndView respuesta = controller.onSubmit(form);
+    	ModelAndView respuesta = controller.formularioCargado(form,null,null,null);
     	
-    	//assertEquals("loggin", respuesta.getViewName());
+    	assertEquals("loggin2", respuesta.getViewName());
     }
     
     @Test
@@ -42,11 +42,11 @@ public class LogginControllerTests {
     	FormularioLoggin form = new FormularioLoggin();
     	form.setCorreo("mesa@conscal.cl");
     	form.setClave("1234");
-    	//ModelAndView respuesta = controller.onSubmit(form);
+    	ModelAndView respuesta = controller.formularioCargado(form,null,null,null);
     	
-    	//assertEquals("inicio", respuesta.getViewName());
-    	//assertEquals("mesa@conscal.cl",respuesta.getModel().get("usuario"));
-    	//assertEquals("1234",respuesta.getModel().get("clave"));
+    	assertEquals("inicio", respuesta.getViewName());
+    	assertEquals("mesa@conscal.cl",respuesta.getModel().get("usuario"));
+    	assertEquals("1234",respuesta.getModel().get("clave"));
     }
 
 }

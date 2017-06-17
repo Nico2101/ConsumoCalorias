@@ -26,6 +26,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,22 +43,39 @@ public class IngresoAlimentoController {
     
     @Autowired
     private ConsumoDao consumoDao;
-
-    public void getConsumoDao(ConsumoDao consumoDao) {
+    @Autowired
+    private TipoDao tipoDao;
+    
+    public void setConsumoDao(ConsumoDao consumoDao) {
         this.consumoDao = consumoDao;
     }
     
+    public void setTipoDao(TipoDao tipoDao){
+    	this.tipoDao = tipoDao;
+    }
+    
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.GET)
-    public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request, boolean incorrecto) throws ServletException{
-    	ModelAndView x = new ModelAndView("ingresoAlimento");
-    	x.addObject(new FormularioIngresoAlimento());
-    	x.addObject("usuario",request.getSession(true).getAttribute("usuario"));
-    	return x;
+    public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request, FormularioIngresoAlimento formularioAnterior, boolean incorrecto) throws ServletException{
+    	Usuario u = comprobarUsuario(request);
+    	if(u != null){
+    		ModelAndView vista = new ModelAndView("ingresoAlimento");
+    		FormularioIngresoAlimento form = formularioAnterior == null ? new FormularioIngresoAlimento() : formularioAnterior;
+        	vista.addObject(form);
+        	vista.addObject("listaTipos", tipoDao.getListaTipos());
+        	vista.addObject("usuario",u);
+        	return vista;
+    	}else{
+    		//Redireccionar al loggin
+    		return new ModelAndView("salir");
+    	}
+    	
+    	
     }
     
     @ModelAttribute("listaTipos")
-    public  List<String> listaTipos(){
-    	List<String> t = consumoDao.getListaTipos();
+    public  List<Tipo> listaTipos(){
+    	
+    	List<Tipo> t = tipoDao.getListaTipos();
     	return t;
     }
     
@@ -68,33 +86,43 @@ public class IngresoAlimentoController {
     }
     
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.POST)
-    public ModelAndView onSubmit(@Valid FormularioIngresoAlimento formulario, BindingResult result) throws ServletException, IOException	
+    public ModelAndView guardarConsumo(@Valid FormularioIngresoAlimento formulario, BindingResult result, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException	
     {
-        if (result.hasErrors()) {
-            return recargarFormularioIngresoAlimento(null,true);
-        }
-		
-        float porcion = formulario.getPorcion();
-        System.out.println(porcion);
-        Alimento alimento = formulario.getAlimento();
-        Date fecha = formulario.getFecha();
-        Tipo tipo = formulario.getTipo();
-        
-        
-      //Date fecha1 = new Date(0);
-       // consumoDao.insertarConsumo(1.2, null, 1, 2 , 1, 1);
-        
-        //Consumo c = consumoDao.saveConsumo(consumo);
-        String c = "a";
-    	if(c != null){
-    		logger.info("Ir a inicio");
-    		ModelAndView i = new ModelAndView("inicio");
-    		i.addObject("usuario", c);
-    		
-    		return i;
-        }
-         logger.info("Ir a Loggin");
-        return recargarFormularioIngresoAlimento(null,true);
-    }    
+    	Usuario u = comprobarUsuario(request);
+    	if(u != null){
+	        if (result.hasErrors()) {
+	            return recargarFormularioIngresoAlimento(request, formulario, false);
+	        }
+			
+	        float porcion = formulario.getPorcion();
+	        int alimento = formulario.getAlimento();
+	        String fecha = formulario.getFecha();//yyyy-MM-dd
+	        int tipo = formulario.getTipo();
+	        
+	        System.out.println("Porcion: "+porcion+"\nId alimento: "+alimento+"\nfecha: "+fecha+"\nId tipo: "+tipo);
+	        
+	        //Insertar aquí el resto de la lógica
+	        
+	        if(fecha != null){
+	    		logger.info("Ir a inicio");
+	    		ModelAndView i = new ModelAndView("inicio");
+	    		i.addObject("usuario", u);
+	    		
+	    		return i;
+	        }
+	         
+	        return recargarFormularioIngresoAlimento(request,null,true);
+    	}else{
+    		//Redireccionar al loggin
+    		logger.info("Ir a Loggin");
+    		return new ModelAndView("salir");
+    	}
+    }  
+    
+    
+    
+    private Usuario comprobarUsuario(HttpServletRequest r){
+    	return (Usuario) r.getSession(true).getAttribute("usuario");
+    }
 }
 

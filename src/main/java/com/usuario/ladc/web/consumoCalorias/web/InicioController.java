@@ -34,21 +34,21 @@ public class InicioController {
     protected final Log logger = LogFactory.getLog(getClass());
 
 
-    @RequestMapping(value="inicio.htm", method = RequestMethod.GET)
+    @RequestMapping(value="inicio.htm")
     public ModelAndView recargarFormularioLoggin(HttpServletRequest request) throws ServletException{
-    	ModelAndView x = new ModelAndView("inicio");
-    	
-    	return x;
+    	Usuario u = comprobarUsuario(request);
+    	if(u != null){
+    		ModelAndView vista = new ModelAndView("inicio");
+        	
+        	vista.addObject("usuario",u);
+        	return vista;
+    	}else{
+    		//Redireccionar al loggin
+    		return new ModelAndView("salir");
+    	}
     }
-  
-    @RequestMapping(value="inicio.htm", method = RequestMethod.POST)
-    public ModelAndView onSubmit( BindingResult result) throws ServletException, IOException	
-    {
-    	
-    		ModelAndView i = new ModelAndView("inicio");
-    		
-    		
-    		return i;
-        }
-        
+    
+    private Usuario comprobarUsuario(HttpServletRequest r){
+    	return (Usuario) r.getSession(true).getAttribute("usuario");
     }
+}
