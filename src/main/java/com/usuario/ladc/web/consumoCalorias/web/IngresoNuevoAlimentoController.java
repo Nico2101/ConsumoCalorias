@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
@@ -40,59 +41,53 @@ public class IngresoNuevoAlimentoController {
     protected final Log logger = LogFactory.getLog(getClass());
     
     @Autowired
-    private ConsumoDao consumoDao;
+    private CategoriaDao categoriaDao;
 
-    public void getConsumoDao(ConsumoDao consumoDao) {
-        this.consumoDao = consumoDao;
+    public void setCategoriaDao(CategoriaDao categoriaDao) {
+        this.categoriaDao = categoriaDao;
     }
     
     @RequestMapping(value="IngresoNuevoAlimento.htm", method = RequestMethod.GET)
-    public ModelAndView recargarFormularioIngresoNuevoAlimento(HttpServletRequest request, boolean incorrecto) throws ServletException{
-    	ModelAndView x = new ModelAndView("IngresoNuevoAlimento");
-    	x.addObject(new FormularioIngresoNuevoAlimento());
-    
-    	return x;
+    public ModelAndView recargarFormularioIngresoNuevoAlimento(HttpServletRequest request,FormularioIngresoNuevoAlimento formularioAntiguo) throws ServletException{
+    	HttpSession session = request.getSession(true);
+		Usuario u = (Usuario) session.getAttribute("usuario");
+		if(u != null){
+			ModelAndView vista = new ModelAndView("IngresoNuevoAlimento");
+			FormularioIngresoNuevoAlimento f = formularioAntiguo == null ? new FormularioIngresoNuevoAlimento() : formularioAntiguo;
+	    	vista.addObject(f);
+	    	vista.addObject("usuario",u);
+	    	vista.addObject("listaCategorias",listaCategorias());
+	    	return vista;
+		}else{
+			return new ModelAndView("salir");
+		}
     }
     
-    @ModelAttribute("listaTipos")
-    public  List<String> listaTipos(){
-    	List<String> t = consumoDao.getListaTipos();
+    //@ModelAttribute("listaTipos")
+    public  List<Categoria> listaCategorias(){
+    	List<Categoria> t = categoriaDao.getListaCategorias();
     	return t;	
     }
     
-    @ModelAttribute("listaAlimentos")
-    public  List<String> listaAlimentos(){
-    	List<String> a = consumoDao.getListaAlimentos();
-    	return a;
-    }
-    
     @RequestMapping(value="IngresoNuevoAlimento.htm", method = RequestMethod.POST)
-    public ModelAndView onSubmit(@Valid FormularioIngresoNuevoAlimento formulario, BindingResult result) throws ServletException, IOException	
+    public ModelAndView guardarAlimento(HttpServletRequest request, @Valid FormularioIngresoNuevoAlimento formulario, BindingResult result) throws ServletException, IOException	
     {
-        if (result.hasErrors()) {
-            return recargarFormularioIngresoNuevoAlimento(null,true);
-        }
-		
-        float porcion = formulario.getPorcion();
-        System.out.println(porcion);
-        Alimento alimento = formulario.getAlimento();
-        Date fecha = formulario.getFecha();
-        Tipo tipo = formulario.getTipo();
-        
-        
-      //Date fecha1 = new Date(0);
-       // consumoDao.insertarConsumo(1.2, null, 1, 2 , 1, 1);
-        
-        //Consumo c = consumoDao.saveConsumo(consumo);
-        String c = "a";
-    	if(c != null){
-    		logger.info("Ir a inicio");
-    		ModelAndView i = new ModelAndView("inicio");
-    		i.addObject("usuario", c);
+    	HttpSession session = request.getSession(true);
+		Usuario u = (Usuario) session.getAttribute("usuario");
+		if(u != null){
+	        if (result.hasErrors()) {
+	            return recargarFormularioIngresoNuevoAlimento(request, formulario);
+	        }
+			
+	        
+	        //Insertar resto de la lógica
+	        
+    		ModelAndView vista = new ModelAndView("inicio");
+    		vista.addObject("usuario", u);
     		
-    		return i;
-        }
-         logger.info("Ir a Loggin");
-        return recargarFormularioIngresoNuevoAlimento(null,true);
+    		return vista;
+		}else{
+			return new ModelAndView("salir");
+		}
     }    
 }

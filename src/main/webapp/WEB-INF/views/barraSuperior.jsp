@@ -36,6 +36,10 @@
 				</a>
 
 				<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+<<<<<<< HEAD
+=======
+				
+>>>>>>> loggin
 					<li>
 						<a href="salir.htm">
 							<i class="ace-icon fa fa-power-off"></i>

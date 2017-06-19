@@ -43,11 +43,10 @@ public class LogginController {
     }
     
     @RequestMapping(value="loggin2.htm", method = RequestMethod.GET)
-    public ModelAndView recargarFormularioLoggin(HttpServletRequest request, FormularioLoggin formularioAnterior, boolean incorrecto) throws ServletException{
-    	logger.info("Cargando formulario del loggin");
+    public ModelAndView recargarFormularioLoggin(HttpServletRequest request, FormularioLoggin antiguoFormulario, boolean incorrecto) throws ServletException{
     	ModelAndView vista = new ModelAndView("loggin2");
-    	if(formularioAnterior != null)	vista.addObject(formularioAnterior);
-    	else	vista.addObject(new FormularioLoggin());
+    	FormularioLoggin f = antiguoFormulario == null ? new FormularioLoggin() : antiguoFormulario;
+    	vista.addObject(f);
     	vista.addObject("usuarioNoEncontrado", incorrecto);
     	return vista;
     }
@@ -55,24 +54,25 @@ public class LogginController {
     @RequestMapping(value="loggin2.htm", method = RequestMethod.POST)
     public ModelAndView formularioCargado(@Valid FormularioLoggin formulario, BindingResult result, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException	
     {
-    	if (result.hasErrors()) {
-            return recargarFormularioLoggin(null, formulario, false);
-        }
+    	
+    	if(result.hasErrors()){
+    		return recargarFormularioLoggin(request,formulario,false);
+    	}
+    	
         String usuario = formulario.getCorreo();
         String clave = formulario.getClave();
         
         Usuario u = usuarioDao.getUsuario(usuario, clave);
         
-        if(u != null){
+    	if(u != null){
     		ModelAndView vista = new ModelAndView("inicio");
+    		vista.addObject("usuario", u);
     		HttpSession session = request.getSession(true);
 			session.setAttribute("usuario", u);
-			vista.addObject("usuario", u);
-			logger.info("Ir a Loggin");
     		return vista;
         }
+        logger.info("Ir a Loggin");
         return recargarFormularioLoggin(request,null,true);
-    
     }
    
     @RequestMapping(value="salir.htm")
@@ -82,6 +82,7 @@ public class LogginController {
     	
     	sesion.removeAttribute("usuario");
     	return vista;
+
     }
    
 

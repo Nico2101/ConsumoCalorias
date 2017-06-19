@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
@@ -31,24 +32,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class InicioController {
 
-    protected final Log logger = LogFactory.getLog(getClass());
 
 
-    @RequestMapping(value="inicio.htm")
-    public ModelAndView recargarFormularioLoggin(HttpServletRequest request) throws ServletException{
-    	Usuario u = comprobarUsuario(request);
-    	if(u != null){
-    		ModelAndView vista = new ModelAndView("inicio");
-        	
-        	vista.addObject("usuario",u);
-        	return vista;
-    	}else{
-    		//Redireccionar al loggin
-    		return new ModelAndView("salir");
-    	}
-    }
-    
-    private Usuario comprobarUsuario(HttpServletRequest r){
-    	return (Usuario) r.getSession(true).getAttribute("usuario");
-    }
+	protected final Log logger = LogFactory.getLog(getClass());
+
+
+	@RequestMapping(value="inicio.htm")
+	public ModelAndView recargarFormularioLoggin(HttpServletRequest request) throws ServletException{
+		HttpSession session = request.getSession(true);
+		Usuario u = (Usuario) session.getAttribute("usuario");
+		if(u != null){
+			ModelAndView vista = new ModelAndView("inicio");
+			vista.addObject("usuario", u);
+			return vista;
+		}else{
+			return new ModelAndView("salir");
+		}
+		
+	}
+
+	
 }

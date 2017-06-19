@@ -21,18 +21,17 @@ public class FormularioIngresoAlimento {
     @NotEmpty(message="La fecha no ha sido especificada")
     private String fecha;
     
-    @NotNull(message="La porción no ha sido especificada")
-    private Float porcion;
+
+    @Min(value=0,message="La porción no ha sido especificada")
+    private float porcion;
     
     @Min(value=0,message="El tipo no ha sido especificado")
-    private Integer tipo;
+    private int tipo;
     
     @Min(value=0,message="El alimento no ha sido especificado")
-    private Integer alimento;
-    
-    
-    
-    public void setFecha(String fecha) {
+    private int alimento;
+
+	public void setFecha(String fecha ) {
 		this.fecha = fecha;
 	}
     

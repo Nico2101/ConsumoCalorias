@@ -41,6 +41,7 @@ public class IngresoAlimentoController {
 
     protected final Log logger = LogFactory.getLog(getClass());
     
+   
     @Autowired
     private ConsumoDao consumoDao;
     @Autowired
@@ -50,10 +51,10 @@ public class IngresoAlimentoController {
         this.consumoDao = consumoDao;
     }
     
-    public void setTipoDao(TipoDao tipoDao){
-    	this.tipoDao = tipoDao;
+    public void setTipoDao(TipoDao tipoDao) {
+        this.tipoDao = tipoDao;
     }
-    
+        
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.GET)
     public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request, FormularioIngresoAlimento formularioAnterior, boolean incorrecto) throws ServletException{
     	Usuario u = comprobarUsuario(request);
@@ -72,18 +73,29 @@ public class IngresoAlimentoController {
     	
     }
     
-    @ModelAttribute("listaTipos")
-    public  List<Tipo> listaTipos(){
+
+    public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request,FormularioIngresoAlimento formularioAntiguo) throws ServletException{
+    	HttpSession session = request.getSession(true);
+		Usuario u = (Usuario) session.getAttribute("usuario");
+		if(u != null){
+			ModelAndView vista = new ModelAndView("ingresoAlimento");
+			FormularioIngresoAlimento f = formularioAntiguo == null ? new FormularioIngresoAlimento() : formularioAntiguo;
+	    	vista.addObject(f);
+	    	vista.addObject("usuario",u);
+	    	vista.addObject("listaTipos",listaTipos());
+	    	return vista;
+		}else{
+			return new ModelAndView("salir");
+		}
     	
+    }
+    
+    //@ModelAttribute("listaTipos")
+    public  List<Tipo> listaTipos(){
     	List<Tipo> t = tipoDao.getListaTipos();
     	return t;
     }
     
-    @ModelAttribute("listaAlimentos")
-    public  List<String> listaAlimentos(){
-    	List<String> a = consumoDao.getListaAlimentos();
-    	return a;
-    }
     
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.POST)
     public ModelAndView guardarConsumo(@Valid FormularioIngresoAlimento formulario, BindingResult result, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException	
@@ -92,6 +104,7 @@ public class IngresoAlimentoController {
     	if(u != null){
 	        if (result.hasErrors()) {
 	            return recargarFormularioIngresoAlimento(request, formulario, false);
+
 	        }
 			
 	        float porcion = formulario.getPorcion();
@@ -124,5 +137,6 @@ public class IngresoAlimentoController {
     private Usuario comprobarUsuario(HttpServletRequest r){
     	return (Usuario) r.getSession(true).getAttribute("usuario");
     }
+
 }
 
