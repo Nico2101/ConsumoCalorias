@@ -15,44 +15,48 @@ public class FormularioIngresoNuevoAlimento {
 
     /** Logger for this class and subclasses */
     protected final Log logger = LogFactory.getLog(getClass());
+    @Min(value=0,message="La categoría no ha sido especificada")
+    private Integer categoria;
+    @NotEmpty(message="El nombre no ha sido especificado")
+    private String nombre;
+    @Min(value=0,message="La cantidad no ha sido especificada")
+    private Float cantidad;
+    @NotEmpty(message="La medida no ha sido especificado")
+    private String medida;
+    @Min(value=0,message="Las calorias no ha sido especificada")
+    private Integer calorias;
     
-    @NotEmpty(message="La fecha no ha sido especificada")
-    private Date fecha;
+	public Integer getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Integer categoria) {
+		this.categoria = categoria;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public Float getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(Float cantidad) {
+		this.cantidad = cantidad;
+	}
+	public String getMedida() {
+		return medida;
+	}
+	public void setMedida(String medida) {
+		this.medida = medida;
+	}
+	public Integer getCalorias() {
+		return calorias;
+	}
+	public void setCalorias(Integer calorias) {
+		this.calorias = calorias;
+	}
     
-    @NotEmpty(message="La porción no ha sido especificada")
-    private float porcion;
     
-    @NotEmpty(message="El tipo no ha sido especificado")
-    private Tipo tipo;
-    
-    @NotEmpty(message="El alimento no ha sido especificado")
-    private Alimento alimento;
-    
-    public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha ) {
-		this.fecha = fecha;
-		logger.info("fecha set to " + fecha);
-	}
-	
-	public float getPorcion() {
-		return porcion;
-	}
-
-	public void setPorcion(float porcion) {
-		this.porcion = porcion;
-		logger.info("porcion set to " + porcion);
-	}
-
-	public Alimento getAlimento() {
-		return alimento;
-	}
-	
-	public Tipo getTipo() {
-		return tipo;
-	}
-	
 
 }

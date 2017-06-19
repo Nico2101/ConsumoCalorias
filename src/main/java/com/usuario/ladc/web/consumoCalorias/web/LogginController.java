@@ -44,17 +44,21 @@ public class LogginController {
     }
     
     @RequestMapping(value="loggin2.htm", method = RequestMethod.GET)
-    public ModelAndView recargarFormularioLoggin(HttpServletRequest request, boolean incorrecto) throws ServletException{
-    	ModelAndView x = new ModelAndView("loggin2");
-    	x.addObject(new FormularioLoggin());
-    	if(incorrecto)
-    		x.addObject("usuarioNoEncontrado", "El usuario no fue encontrado");
-    	return x;
+    public ModelAndView recargarFormularioLoggin(HttpServletRequest request, FormularioLoggin antiguoFormulario, boolean incorrecto) throws ServletException{
+    	ModelAndView vista = new ModelAndView("loggin2");
+    	FormularioLoggin f = antiguoFormulario == null ? new FormularioLoggin() : antiguoFormulario;
+    	vista.addObject(f);
+    	vista.addObject("usuarioNoEncontrado", incorrecto);
+    	return vista;
     }
   
     @RequestMapping(value="loggin2.htm", method = RequestMethod.POST)
     public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, @Valid FormularioLoggin formulario, BindingResult result) throws ServletException, IOException	
     {
+    	
+    	if(result.hasErrors()){
+    		return recargarFormularioLoggin(request,formulario,false);
+    	}
     	
         String usuario = formulario.getCorreo();
         String clave = formulario.getClave();
@@ -63,17 +67,22 @@ public class LogginController {
         
         
     	if(u != null){
-    		ModelAndView i = new ModelAndView("inicio");
-    		i.addObject("usuario", u);
+    		ModelAndView vista = new ModelAndView("inicio");
+    		vista.addObject("usuario", u);
     		HttpSession session = request.getSession(true);
 			session.setAttribute("usuario", u);
-    		return i;
+    		return vista;
         }
-         logger.info("Ir a Loggin");
-        return recargarFormularioLoggin(null,true);
+        logger.info("Ir a Loggin");
+        return recargarFormularioLoggin(request,null,true);
     }
    
-
+    @RequestMapping(value="salir.htm")
+    public ModelAndView cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException{
+    	HttpSession session = request.getSession(true);
+    	session.removeAttribute("usuario");
+    	return new ModelAndView("salir");
+    }
    
 
     

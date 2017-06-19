@@ -18,7 +18,7 @@ public class LogginControllerTests {
     @Test
     public void testQueRedireccionaAlLoggin() throws Exception{		
         LogginController controller = new LogginController();
-        ModelAndView modelAndView = controller.recargarFormularioLoggin(null, false);		
+        ModelAndView modelAndView = controller.recargarFormularioLoggin(null,null, false);		
         
         assertEquals("loggin", modelAndView.getViewName());
         assertNotNull(modelAndView.getModel());

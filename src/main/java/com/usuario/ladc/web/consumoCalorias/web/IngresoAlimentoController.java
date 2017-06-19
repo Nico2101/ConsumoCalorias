@@ -40,61 +40,64 @@ public class IngresoAlimentoController {
 
     protected final Log logger = LogFactory.getLog(getClass());
     
+   
     @Autowired
-    private ConsumoDao consumoDao;
+    private TipoDao tipoDao;
 
-    public void getConsumoDao(ConsumoDao consumoDao) {
-        this.consumoDao = consumoDao;
+    public void setTipoDao(TipoDao tipoDao) {
+        this.tipoDao = tipoDao;
     }
     
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.GET)
-    public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request, boolean incorrecto) throws ServletException{
-    	ModelAndView x = new ModelAndView("ingresoAlimento");
-    	x.addObject(new FormularioIngresoAlimento());
-    	x.addObject("usuario",request.getSession(true).getAttribute("usuario"));
-    	return x;
+    public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request,FormularioIngresoAlimento formularioAntiguo) throws ServletException{
+    	HttpSession session = request.getSession(true);
+		Usuario u = (Usuario) session.getAttribute("usuario");
+		if(u != null){
+			ModelAndView vista = new ModelAndView("ingresoAlimento");
+			FormularioIngresoAlimento f = formularioAntiguo == null ? new FormularioIngresoAlimento() : formularioAntiguo;
+	    	vista.addObject(f);
+	    	vista.addObject("usuario",u);
+	    	vista.addObject("listaTipos",listaTipos());
+	    	return vista;
+		}else{
+			return new ModelAndView("salir");
+		}
+    	
     }
     
-    @ModelAttribute("listaTipos")
-    public  List<String> listaTipos(){
-    	List<String> t = consumoDao.getListaTipos();
+    //@ModelAttribute("listaTipos")
+    public  List<Tipo> listaTipos(){
+    	List<Tipo> t = tipoDao.getListaTipos();
     	return t;
     }
     
-    @ModelAttribute("listaAlimentos")
-    public  List<String> listaAlimentos(){
-    	List<String> a = consumoDao.getListaAlimentos();
-    	return a;
-    }
     
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.POST)
-    public ModelAndView onSubmit(@Valid FormularioIngresoAlimento formulario, BindingResult result) throws ServletException, IOException	
+    public ModelAndView guardarConsumo(HttpServletRequest request, @Valid FormularioIngresoAlimento formulario, BindingResult result) throws ServletException, IOException	
     {
-        if (result.hasErrors()) {
-            return recargarFormularioIngresoAlimento(null,true);
-        }
-		
-        float porcion = formulario.getPorcion();
-        System.out.println(porcion);
-        Alimento alimento = formulario.getAlimento();
-        Date fecha = formulario.getFecha();
-        Tipo tipo = formulario.getTipo();
-        
-        
-      //Date fecha1 = new Date(0);
-       // consumoDao.insertarConsumo(1.2, null, 1, 2 , 1, 1);
-        
-        //Consumo c = consumoDao.saveConsumo(consumo);
-        String c = "a";
-    	if(c != null){
-    		logger.info("Ir a inicio");
-    		ModelAndView i = new ModelAndView("inicio");
-    		i.addObject("usuario", c);
+    	HttpSession session = request.getSession(true);
+		Usuario u = (Usuario) session.getAttribute("usuario");
+		if(u != null){
+	        if (result.hasErrors()) {
+	            return recargarFormularioIngresoAlimento(request, formulario);
+	        }
+			
+	        float porcion = formulario.getPorcion();
+	        int alimento = formulario.getAlimento();
+	        String fecha = formulario.getFecha();
+	        int tipo = formulario.getTipo();
+	        
+	        System.out.println("porcion: "+ porcion + "\nid alimento :" + alimento + "\nfecha: " + fecha + "\ntipo : " + tipo);
+	        
+	        //Insertar resto de la lógica
+	        
+    		ModelAndView vista = new ModelAndView("inicio");
+    		vista.addObject("usuario", u);
     		
-    		return i;
-        }
-         logger.info("Ir a Loggin");
-        return recargarFormularioIngresoAlimento(null,true);
+    		return vista;
+		}else{
+			return new ModelAndView("salir");
+		}
     }    
 }
 

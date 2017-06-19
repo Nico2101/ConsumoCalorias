@@ -17,22 +17,22 @@ public class FormularioIngresoAlimento {
     protected final Log logger = LogFactory.getLog(getClass());
     
     @NotEmpty(message="La fecha no ha sido especificada")
-    private Date fecha;
+    private String fecha;
     
-    @NotEmpty(message="La porción no ha sido especificada")
+    @Min(value=0,message="La porción no ha sido especificada")
     private float porcion;
     
-    @NotEmpty(message="El tipo no ha sido especificado")
-    private Tipo tipo;
+    @Min(value=0,message="El tipo no ha sido especificado")
+    private int tipo;
     
-    @NotEmpty(message="El alimento no ha sido especificado")
-    private Alimento alimento;
+    @Min(value=0,message="El alimento no ha sido especificado")
+    private int alimento;
     
-    public Date getFecha() {
+    public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha ) {
+	public void setFecha(String fecha ) {
 		this.fecha = fecha;
 		logger.info("fecha set to " + fecha);
 	}
@@ -46,11 +46,21 @@ public class FormularioIngresoAlimento {
 		logger.info("porcion set to " + porcion);
 	}
 
-	public Alimento getAlimento() {
+	public int getAlimento() {
 		return alimento;
 	}
 	
-	public Tipo getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setAlimento(int alimento) {
+		this.alimento = alimento;
+	}
+	
+	
 }
