@@ -127,90 +127,7 @@
 									</div>
 								</div>
 								
-<<<<<<< HEAD
-		<div class="row">
-			<div class="col-xs-20" aling=center>
-				<!-- PAGE CONTENT BEGINS -->
-				<form:form method="post" commandName="formularioIngresoAlimento">
-					<br>
-					<div class="row">
-					
-						<div class="col-sm-4" align=center>
-							<label>Alimento:</label>
-						</div>
-						<div class="col-xs-3">
-							<form:select path="alimento">
-								<form:option value="-1" label="--Seleccione Alimento--"/>
-								<c:forEach var="alimento" items="${usuario.alimentos}">
-									<form:option value="${alimento.id}">${alimento.nombre}</form:option>
-								</c:forEach>
-									
-							</form:select>
-							<a class="btn btn-app btn-purple btn-xs " href="IngresoNuevoAlimento.htm" ><i class="ace-icon glyphicon glyphicon-plus bigger-120"></i></a>
-							<br>
-     						<form:errors path="alimento" cssClass="btn btn-danger btn-sm popover-error"/>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-4" align=center>
-							<label>Porción:</label>
-						</div>
-						<div class="col-xs-3">
-							<span class="block input-icon input-icon-right">
-								<form:input type="number" step="0.1" min="0" class="form-control" path="porcion" placeholder="Porción"/>
-							</span><br>
-     						<form:errors path="porcion" cssClass="btn btn-danger btn-sm popover-error"/>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-4" align=center>
-							<label>Fecha:</label>
-						</div>
-						<div class="col-xs-3">
-							<span class="block input-icon input-icon-right">
-								<form:input type="date" ccsClass="form-control" path="fecha" placeholder="AAAA-MM-DD"/>
-							</span><br>
-     						<form:errors path="fecha" cssClass="btn btn-danger btn-sm popover-error"/>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-4" align=center>
-							<label>Tipo:</label>
-						</div>
-						<div class="col-xs-3">
-							<spam>${idTipo} </spam>
-							<form:select path="tipo">
-								<form:option value="-1" label="--Seleccione Tipo Alimento--"/>
-								<c:forEach var="tipo" items="${listaTipos}">
-									<form:option value="${tipo.id}">${tipo.nombre}</form:option>
-								</c:forEach>
-									
-							</form:select>
-							<br>
-     						<form:errors path="tipo" cssClass="btn btn-danger btn-sm popover-error"/>
-						</div>
-					</div>
-						 <div class="col-s-12" align=center>
-	                       	<button type="submit" class="btn btn-success" value="Ingresar">Ingresar</button>
-	                   	</div>
-				</form:form>
-			</div>
-					<div class="vspace-12-sm"></div>
 
-				</div><!-- /.row -->
-
-				<div class="hr hr32 hr-dotted"></div>
-
-			<!-- PAGE CONTENT ENDS -->
-			</div><!-- /.col -->
-		</div><!-- /.row -->
-	</div><!-- /.page-content -->
-</div>
-			</div><!-- /.main-content -->
-
-			<div class="footer">
-				<%@ include file="pieDePagina.jsp" %>
-=======
 								<div class="row">
 									<div class="col-s-12" align=center>
 										<button type="submit" class="btn btn-success" value="Ingresar">Ingresar</button>
@@ -228,7 +145,6 @@
 					<!-- PAGE CONTENT ENDS -->
 				</div>
 				<!-- /.col -->
->>>>>>> loggin
 			</div>
 			<!-- /.row -->
 		</div>

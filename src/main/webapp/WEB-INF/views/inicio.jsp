@@ -130,12 +130,8 @@
 	<!-- /.main-container -->
 
 
-<<<<<<< HEAD
-		
-		<%@ include file="scripts.jsp" %>
-	</body>
-=======
+
 	<%@ include file="scripts.jsp"%>
 </body>
->>>>>>> loggin
+
 </html>
