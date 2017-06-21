@@ -56,24 +56,6 @@ public class IngresoAlimentoController {
     }
         
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.GET)
-    public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request, FormularioIngresoAlimento formularioAnterior, boolean incorrecto) throws ServletException{
-    	Usuario u = comprobarUsuario(request);
-    	if(u != null){
-    		ModelAndView vista = new ModelAndView("ingresoAlimento");
-    		FormularioIngresoAlimento form = formularioAnterior == null ? new FormularioIngresoAlimento() : formularioAnterior;
-        	vista.addObject(form);
-        	vista.addObject("listaTipos", tipoDao.getListaTipos());
-        	vista.addObject("usuario",u);
-        	return vista;
-    	}else{
-    		//Redireccionar al loggin
-    		return new ModelAndView("salir");
-    	}
-    	
-    	
-    }
-    
-
     public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request,FormularioIngresoAlimento formularioAntiguo) throws ServletException{
     	HttpSession session = request.getSession(true);
 		Usuario u = (Usuario) session.getAttribute("usuario");
@@ -82,7 +64,7 @@ public class IngresoAlimentoController {
 			FormularioIngresoAlimento f = formularioAntiguo == null ? new FormularioIngresoAlimento() : formularioAntiguo;
 	    	vista.addObject(f);
 	    	vista.addObject("usuario",u);
-	    	vista.addObject("listaTipos",listaTipos());
+	    	vista.addObject("listaTipos",tipoDao.getListaTipos());
 	    	return vista;
 		}else{
 			return new ModelAndView("salir");
@@ -90,11 +72,6 @@ public class IngresoAlimentoController {
     	
     }
     
-    //@ModelAttribute("listaTipos")
-    public  List<Tipo> listaTipos(){
-    	List<Tipo> t = tipoDao.getListaTipos();
-    	return t;
-    }
     
     
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.POST)
@@ -103,7 +80,7 @@ public class IngresoAlimentoController {
     	Usuario u = comprobarUsuario(request);
     	if(u != null){
 	        if (result.hasErrors()) {
-	            return recargarFormularioIngresoAlimento(request, formulario, false);
+	            return recargarFormularioIngresoAlimento(request, formulario);
 
 	        }
 			
@@ -124,7 +101,7 @@ public class IngresoAlimentoController {
 	    		return i;
 	        }
 	         
-	        return recargarFormularioIngresoAlimento(request,null,true);
+	        return recargarFormularioIngresoAlimento(request,null);
     	}else{
     		//Redireccionar al loggin
     		logger.info("Ir a Loggin");

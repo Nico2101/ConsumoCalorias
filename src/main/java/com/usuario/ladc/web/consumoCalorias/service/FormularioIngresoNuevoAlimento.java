@@ -15,21 +15,26 @@ public class FormularioIngresoNuevoAlimento {
 
     /** Logger for this class and subclasses */
     protected final Log logger = LogFactory.getLog(getClass());
+
     @Min(value=0,message="La categoría no ha sido especificada")
-    private Integer categoria;
+    private int categoria;
+    
     @NotEmpty(message="El nombre no ha sido especificado")
     private String nombre;
+    
     @Min(value=0,message="La cantidad no ha sido especificada")
-    private Float cantidad;
+    private float cantidad;
+    
     @NotEmpty(message="La medida no ha sido especificado")
     private String medida;
-    @Min(value=0,message="Las calorias no ha sido especificada")
-    private Integer calorias;
     
-	public Integer getCategoria() {
+    @Min(value=0,message="Las calorias no ha sido especificada")
+    private int calorias;
+    
+	public int getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(Integer categoria) {
+	public void setCategoria(int categoria) {
 		this.categoria = categoria;
 	}
 	public String getNombre() {
@@ -38,10 +43,10 @@ public class FormularioIngresoNuevoAlimento {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Float getCantidad() {
+	public float getCantidad() {
 		return cantidad;
 	}
-	public void setCantidad(Float cantidad) {
+	public void setCantidad(float cantidad) {
 		this.cantidad = cantidad;
 	}
 	public String getMedida() {
@@ -50,10 +55,10 @@ public class FormularioIngresoNuevoAlimento {
 	public void setMedida(String medida) {
 		this.medida = medida;
 	}
-	public Integer getCalorias() {
+	public int getCalorias() {
 		return calorias;
 	}
-	public void setCalorias(Integer calorias) {
+	public void setCalorias(int calorias) {
 		this.calorias = calorias;
 	}
     

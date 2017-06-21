@@ -32,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -53,20 +54,14 @@ public class IngresoNuevoAlimentoController {
 		Usuario u = (Usuario) session.getAttribute("usuario");
 		if(u != null){
 			ModelAndView vista = new ModelAndView("IngresoNuevoAlimento");
-			FormularioIngresoNuevoAlimento f = formularioAntiguo == null ? new FormularioIngresoNuevoAlimento() : formularioAntiguo;
-	    	vista.addObject(f);
+			FormularioIngresoNuevoAlimento form = formularioAntiguo == null ? new FormularioIngresoNuevoAlimento() : formularioAntiguo;
+	    	vista.addObject(form);
+	    	vista.addObject("listaCategorias",categoriaDao.getListaCategorias());
 	    	vista.addObject("usuario",u);
-	    	vista.addObject("listaCategorias",listaCategorias());
 	    	return vista;
 		}else{
 			return new ModelAndView("salir");
 		}
-    }
-    
-    //@ModelAttribute("listaTipos")
-    public  List<Categoria> listaCategorias(){
-    	List<Categoria> t = categoriaDao.getListaCategorias();
-    	return t;	
     }
     
     @RequestMapping(value="IngresoNuevoAlimento.htm", method = RequestMethod.POST)
@@ -76,9 +71,16 @@ public class IngresoNuevoAlimentoController {
 		Usuario u = (Usuario) session.getAttribute("usuario");
 		if(u != null){
 	        if (result.hasErrors()) {
-	            return recargarFormularioIngresoNuevoAlimento(request, formulario);
+	        	return recargarFormularioIngresoNuevoAlimento(request, formulario);
 	        }
-			
+	        
+	        int categoria = formulario.getCategoria();
+	        String nombre = formulario.getNombre();
+	        float cantidad = formulario.getCantidad();
+	        String medida = formulario.getMedida();
+	        int calorias = formulario.getCalorias();
+	        
+	        System.out.println("categoria: "+categoria+"\nId nombre: "+nombre+"\ncantidad: "+cantidad+"\nmedida: "+medida+"\ncalorias: "+calorias);
 	        
 	        //Insertar resto de la lógica
 	        
@@ -87,7 +89,7 @@ public class IngresoNuevoAlimentoController {
     		
     		return vista;
 		}else{
-			return new ModelAndView("salir");
+ 			return new ModelAndView("salir");
 		}
     }    
 }
