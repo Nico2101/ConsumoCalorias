@@ -78,9 +78,12 @@
 									<div class="col-sm-4" align=center>
 										<label>Alimento:</label>
 									</div>
+									
 									<div class="col-xs-3">
-										<form:select path="alimento">
-											<form:option value="-1"  >--Seleccione Alimento---</form:option>
+											<form:select path="alimento" multiple=""
+											class="chosen-select form-control" id="form-field-select-4"
+											data-placeholder="Choose a State...">
+<form:option value="-1"  >--Seleccione Alimento---</form:option>
 											<c:forEach items="${usuario.alimentos}" var="alimento">
 												<form:option value="${alimento.id}">${alimento.nombre}</form:option>
 											</c:forEach>
@@ -88,6 +91,9 @@
 									<form:errors path="alimento" cssClass="btn btn-danger btn-sm popover-error" />
 									</div>
 								</div>
+		
+								
+								
 								<div class="row">
 									<div class="col-xs-4" align=center>
 										<label>Porción:</label>
@@ -183,85 +189,149 @@
 	<!-- page specific plugin scripts -->
 	<script src="assets/js/jquery-ui.min.js"></script>
 	<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-
 	<!-- ace scripts -->
 	<script src="assets/js/ace-elements.min.js"></script>
 	<script src="assets/js/ace.min.js"></script>
+	<script src="assets/js/select2.min.js"></script>
+
+
+	<script src="assets/js/jquery-ui.custom.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="assets/js/chosen.jquery.min.js"></script>
+		<script src="assets/js/spinbox.min.js"></script>
+		<script src="assets/js/bootstrap-datepicker.min.js"></script>
+		<script src="assets/js/bootstrap-timepicker.min.js"></script>
+		<script src="assets/js/moment.min.js"></script>
+		<script src="assets/js/daterangepicker.min.js"></script>
+		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+		<script src="assets/js/bootstrap-colorpicker.min.js"></script>
+		<script src="assets/js/jquery.knob.min.js"></script>
+		<script src="assets/js/autosize.min.js"></script>
+		<script src="assets/js/jquery.inputlimiter.min.js"></script>
+		<script src="assets/js/jquery.maskedinput.min.js"></script>
+		<script src="assets/js/bootstrap-tag.min.js"></script>
+
+		<!-- ace scripts -->
+		<script src="assets/js/ace-elements.min.js"></script>
+		<script src="assets/js/ace.min.js"></script>
+
+
+
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
 		jQuery(function($) {
-
-			//autocomplete
-			var availableTags = [ "Leche", "Arroz con carne",
-					"Tallarines con salsa Blanca", "Bebida", "Jugo", "Porotos",
-					"Galleta", "Tomate", "Tallarines con salsa napolitana",
-					"Sopa de pollo", "Sopa de Vacuno", "Lentejas",
-					"Hamburguesa", "Papas Fritas (Bolsa)",
-					"Papas Fritas caseras", "Ramitas", "Doritos",
-					"Cereal integral", "Cereal Chocapic", "Lechuga", "Palta",
-					"Mayo" ];
-			$("#tags").autocomplete({
-				source : availableTags
+			if(!ace.vars['touch']) {
+				$('.chosen-select').chosen({allow_single_deselect:true}); 
+				//resize the chosen on window resize
+		
+				$(window)
+				.off('resize.chosen')
+				.on('resize.chosen', function() {
+					$('.chosen-select').each(function() {
+						 var $this = $(this);
+						 $this.next().css({'width': $this.parent().width()});
+					})
+				}).trigger('resize.chosen');
+				//resize chosen on sidebar collapse/expand
+				$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+					if(event_name != 'sidebar_collapsed') return;
+					$('.chosen-select').each(function() {
+						 var $this = $(this);
+						 $this.next().css({'width': $this.parent().width()});
+					})
+				});
+		
+		
+				$('#chosen-multiple-style .btn').on('click', function(e){
+					var target = $(this).find('input[type=radio]');
+					var which = parseInt(target.val());
+					if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
+					 else $('#form-field-select-4').removeClass('tag-input-style');
+				});
+			}
+			
+			//select2
+			$('.select2').css('width','200px').select2({allowClear:true})
+			$('#select2-multiple-style .btn').on('click', function(e){
+				var target = $(this).find('input[type=radio]');
+				var which = parseInt(target.val());
+				if(which == 2) $('.select2').addClass('tag-input-style');
+				 else $('.select2').removeClass('tag-input-style');
 			});
-
-			//custom autocomplete (category selection)
-			$.widget("custom.catcomplete", $.ui.autocomplete, {
-				_create : function() {
-					this._super();
-					this.widget().menu("option", "items",
-							"> :not(.ui-autocomplete-category)");
-				},
-				_renderMenu : function(ul, items) {
-					var that = this, currentCategory = "";
-					$.each(items, function(index, item) {
-						var li;
-						if (item.category != currentCategory) {
-							ul.append("<li class='ui-autocomplete-category'>"
-									+ item.category + "</li>");
-							currentCategory = item.category;
-						}
-						li = that._renderItemData(ul, item);
-						if (item.category) {
-							li.attr("aria-label", item.category + " : "
-									+ item.label);
+			
+			//////////////////
+			$('.multiselect').multiselect({
+			 enableFiltering: true,
+			 enableHTML: true,
+			 buttonClass: 'btn btn-white btn-primary',
+			 templates: {
+				button: '<button type="button" class="multiselect dropdown-toggle" data-toggle="dropdown"><span class="multiselect-selected-text"></span> &nbsp;<b class="fa fa-caret-down"></b></button>',
+				ul: '<ul class="multiselect-container dropdown-menu"></ul>',
+				filter: '<li class="multiselect-item filter"><div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input class="form-control multiselect-search" type="text"></div></li>',
+				filterClearBtn: '<span class="input-group-btn"><button class="btn btn-default btn-white btn-grey multiselect-clear-filter" type="button"><i class="fa fa-times-circle red2"></i></button></span>',
+				li: '<li><a tabindex="0"><label></label></a></li>',
+		        divider: '<li class="multiselect-item divider"></li>',
+		        liGroup: '<li class="multiselect-item multiselect-group"><label></label></li>'
+			 }
+			});
+		
+			
+			///////////////////
+				
+			//typeahead.js
+			//example taken from plugin's page at: https://twitter.github.io/typeahead.js/examples/
+			var substringMatcher = function(strs) {
+				return function findMatches(q, cb) {
+					var matches, substringRegex;
+				 
+					// an array that will be populated with substring matches
+					matches = [];
+				 
+					// regex used to determine if a string contains the substring `q`
+					substrRegex = new RegExp(q, 'i');
+				 
+					// iterate through the pool of strings and for any string that
+					// contains the substring `q`, add it to the `matches` array
+					$.each(strs, function(i, str) {
+						if (substrRegex.test(str)) {
+							// the typeahead jQuery plugin expects suggestions to a
+							// JavaScript object, refer to typeahead docs for more info
+							matches.push({ value: str });
 						}
 					});
+		
+					cb(matches);
 				}
+			 }
+		
+			 $('input.typeahead').typeahead({
+				hint: true,
+				highlight: true,
+				minLength: 1
+			 }, {
+				name: 'states',
+				displayKey: 'value',
+				source: substringMatcher(ace.vars['US_STATES']),
+				limit: 10
+			 });
+				
+				
+			///////////////
+			
+			
+			//in ajax mode, remove remaining elements before leaving page
+			$(document).one('ajaxloadstart.page', function(e) {
+				$('[class*=select2]').remove();
+				$('select[name="duallistbox_demo1[]"]').bootstrapDualListbox('destroy');
+				$('.rating').raty('destroy');
+				$('.multiselect').multiselect('destroy');
 			});
+		
+	
+			
 
-			var data = [ {
-				label : "anders",
-				category : ""
-			}, {
-				label : "andreas",
-				category : ""
-			}, {
-				label : "antal",
-				category : ""
-			}, {
-				label : "annhhx10",
-				category : "Products"
-			}, {
-				label : "annk K12",
-				category : "Products"
-			}, {
-				label : "annttop C13",
-				category : "Products"
-			}, {
-				label : "anders andersson",
-				category : "People"
-			}, {
-				label : "andreas andersson",
-				category : "People"
-			}, {
-				label : "andreas johnson",
-				category : "People"
-			} ];
-			$("#search").catcomplete({
-				delay : 0,
-				source : data
-			});
+		
 
 		});
 	</script>

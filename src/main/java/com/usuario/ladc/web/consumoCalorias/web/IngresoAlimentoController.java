@@ -35,6 +35,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class IngresoAlimentoController {
@@ -56,6 +57,7 @@ public class IngresoAlimentoController {
     }
         
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.GET)
+    @ResponseBody
     public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request,FormularioIngresoAlimento formularioAntiguo) throws ServletException{
     	HttpSession session = request.getSession(true);
 		Usuario u = (Usuario) session.getAttribute("usuario");
