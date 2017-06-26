@@ -65,7 +65,12 @@ public class LogginController {
         Usuario u = usuarioDao.getUsuario(usuario, clave);
         
     	if(u != null){
-    		ModelAndView vista = new ModelAndView("inicio");
+    		ModelAndView vista = new ModelAndView();
+    		if(u.getId() == 0){
+    			vista.setViewName("inicioAdministrador");
+    		}else{
+    			vista.setViewName("inicio");
+    		}
     		vista.addObject("usuario", u);
     		HttpSession session = request.getSession(true);
 			session.setAttribute("usuario", u);

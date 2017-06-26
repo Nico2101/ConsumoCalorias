@@ -38,7 +38,7 @@ public class InicioController {
 
 
 	@RequestMapping(value="inicio.htm")
-	public ModelAndView recargarFormularioLoggin(HttpServletRequest request) throws ServletException{
+	public ModelAndView cargarPaginaInicio(HttpServletRequest request) throws ServletException{
 		HttpSession session = request.getSession(true);
 		Usuario u = (Usuario) session.getAttribute("usuario");
 		if(u != null){
@@ -50,6 +50,19 @@ public class InicioController {
 		}
 		
 	}
-
+	
+	@RequestMapping(value="inicioAdministrador.htm")
+	public ModelAndView cargarPaginaInicioAdministrador(HttpServletRequest request) throws ServletException{
+		HttpSession session = request.getSession(true);
+		Usuario u = (Usuario) session.getAttribute("usuario");
+		if(u != null){
+			ModelAndView vista = new ModelAndView("inicioAdministrador");
+			vista.addObject("usuario", u);
+			return vista;
+		}else{
+			return new ModelAndView("salir");
+		}
+		
+	}
 	
 }
