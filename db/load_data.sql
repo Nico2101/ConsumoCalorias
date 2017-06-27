@@ -4,6 +4,8 @@ INSERT INTO usuario (id, correo, clave, nombre, apellido, max_calorias, peso, fe
 	values(2, 'mesa@conscal.cl', '1234', 'Florinda', 'Mesa', 1250, 64, '1962-07-15');
 INSERT INTO usuario (id, correo, clave, nombre, apellido, max_calorias, peso, fecha_nacimiento) 
 	values(3, 'shuster@conscal.cl', '1234', 'Augusto', 'Shuster', 3800, 55, '1989-02-23');
+INSERT INTO usuario (id, correo, clave, nombre, apellido, max_calorias, peso, fecha_nacimiento) 
+	values(0, 'root@conscal.cl', 'clave', 'Martita', 'Muñoz', 0, 0, '2000-01-01');
 	
 INSERT INTO tipo (id, nombre) values (1, 'Desayuno');
 INSERT INTO tipo (id, nombre) values (2, 'Almuerzo');
