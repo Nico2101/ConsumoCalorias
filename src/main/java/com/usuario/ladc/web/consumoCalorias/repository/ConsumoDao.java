@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,10 +42,9 @@ public class ConsumoDao {
         return em.createQuery("select nombre from Alimento a order by a.id").getResultList();
     }
    
-	public void insertarConsumo(int id, Date fecha, float porcion, int id_usuario, int id_tipo, int id_alimento){
-		System.out.println("fefe" + fecha);
-        em.createQuery("insert into Consumo(id,fecha, porcion, id_usuario, id_tipo, id_alimento) select id, fecha, porcion, id_usuario, id_tipo, id_alimento").executeUpdate();
-    }
+	//public void insertarConsumo(int id, Date fecha, float porcion, int id_usuario, int id_tipo, int id_alimento){
+    //    em.createQuery("insert into Consumo(id,fecha, porcion, id_usuario, id_tipo, id_alimento) select id, fecha, porcion, id_usuario, id_tipo, id_alimento").executeUpdate();
+    //}
 
     @Transactional(readOnly = false)
     public void saveConsumo(Consumo u) {

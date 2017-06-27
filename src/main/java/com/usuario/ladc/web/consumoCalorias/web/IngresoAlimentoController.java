@@ -8,7 +8,7 @@ import com.usuario.ladc.web.consumoCalorias.service.*;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -41,12 +41,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class IngresoAlimentoController {
 
     protected final Log logger = LogFactory.getLog(getClass());
-    
-   
     @Autowired
     private ConsumoDao consumoDao;
     @Autowired
     private TipoDao tipoDao;
+    @Autowired
+    private AlimentoDao alimentoDao;
     
     public void setConsumoDao(ConsumoDao consumoDao) {
         this.consumoDao = consumoDao;
@@ -54,6 +54,10 @@ public class IngresoAlimentoController {
     
     public void setTipoDao(TipoDao tipoDao) {
         this.tipoDao = tipoDao;
+    }
+    
+    public void setAlimentoDao(AlimentoDao alimentoDao) {
+        this.alimentoDao = alimentoDao;
     }
         
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.GET)
@@ -70,28 +74,41 @@ public class IngresoAlimentoController {
 	    	return vista;
 		}else{
 			return new ModelAndView("salir");
-		}
-    	
+		}	
     }
-    
-    
-    
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.POST)
     public ModelAndView guardarConsumo(@Valid FormularioIngresoAlimento formulario, BindingResult result, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException	
     {
     	Usuario u = comprobarUsuario(request);
+    	
     	if(u != null){
 	        if (result.hasErrors()) {
-	            return recargarFormularioIngresoAlimento(request, formulario);
-
+	            return recargarFormularioIngresoAlimento(request, formulario); 
 	        }
-			
+	    	
 	        float porcion = formulario.getPorcion();
 	        int alimento = formulario.getAlimento();
-	        String fecha = formulario.getFecha();//yyyy-MM-dd
+	        //String fecha = formulario.getFecha();//yyyy-MM-dd
+	        Date fecha= new Date();
 	        int tipo = formulario.getTipo();
-	        
+	        System.out.println("Usuario:" + u.getId());
+	        int usuario= u.getId();
 	        System.out.println("Porcion: "+porcion+"\nId alimento: "+alimento+"\nfecha: "+fecha+"\nId tipo: "+tipo);
+	        
+	        Tipo tipoObjeto= tipoDao.getTipo(tipo);
+	        System.out.println("Tipo:" +tipoObjeto.getId()+ "-"+tipoObjeto.getNombre());
+	        
+	        Alimento alimentObjeto = alimentoDao.getAlimento(alimento);
+	        System.out.println("Alimento: " + alimentObjeto.getNombre()+" "+ alimentObjeto.getId());
+	        
+	        Consumo c = new Consumo();
+	        c.setAlimento(alimentObjeto);
+	        c.setFecha(fecha);
+	        c.setPorcion(porcion);
+	        c.setTipo(tipoObjeto);
+	        c.setUsuario(u);
+	        
+	        consumoDao.saveConsumo(c);
 	        
 	        //Insertar aquí el resto de la lógica
 	        
@@ -110,8 +127,6 @@ public class IngresoAlimentoController {
     		return new ModelAndView("salir");
     	}
     }  
-    
-    
     
     private Usuario comprobarUsuario(HttpServletRequest r){
     	return (Usuario) r.getSession(true).getAttribute("usuario");

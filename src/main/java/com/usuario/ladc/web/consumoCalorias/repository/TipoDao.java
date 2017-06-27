@@ -28,6 +28,13 @@ public class TipoDao {
     public List<Tipo> getListaTipos() {
         return em.createQuery("from Tipo t order by t.id").getResultList();
     }
+    
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    public Tipo getTipo(int id_Tipo) {
+    	String tipoString= ""+id_Tipo;
+        return (Tipo)em.createQuery("from Tipo t where t.id='"+tipoString+"'").getResultList().get(0);
+    }
 
     @Transactional(readOnly = false)
     public void saveTipo(Tipo t) {

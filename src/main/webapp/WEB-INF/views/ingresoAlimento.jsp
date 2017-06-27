@@ -39,14 +39,7 @@
 
 			<div class="main-content-inner">
 				<div class="breadcrumbs ace-save-state" id="breadcrumbs">
-
-
-
-
-
 					<div class="nav-search" id="nav-search">
-
-
 						<a class="btn btn-app btn-purple btn-xs "
 							href="IngresoNuevoAlimento.htm"><i
 							class="ace-icon glyphicon glyphicon-plus bigger-120"></i></a>
@@ -56,17 +49,11 @@
 				</div>
 
 				<div class="page-content">
-
 					<div class="page-header">
 						<h1>Ingreso de Alimentos</h1>
-
-
 					</div>
 					<!-- /.page-header -->
 					<div class="space-12"></div>
-
-
-
 					<div class="row">
 						<div class="col-xs-20" aling=center>
 							<!-- PAGE CONTENT BEGINS -->
@@ -75,15 +62,29 @@
 							<form:form method="post" commandName="formularioIngresoAlimento">
 								<br>
 								<div class="row">
+									<div class="col-xs-4" align=center>
+										<label>Tipo:</label>
+									</div>
+									<div class="col-xs-3">
+										<form:select path="tipo" multiple=""
+											class="chosen-select form-control" id="form-field-select-4">
+											<form:option value="-1"  >--Seleccione Tipo---</form:option>
+											<c:forEach items="${listaTipos}" var="tipo">
+												<form:option value="${tipo.id}">${tipo.nombre}</form:option>
+											</c:forEach>
+										</form:select>
+										<form:errors path="tipo" cssClass="btn btn-danger btn-sm popover-error" />
+									</div>
+								</div>
+								<div class="row">
 									<div class="col-sm-4" align=center>
 										<label>Alimento:</label>
 									</div>
 									
 									<div class="col-xs-3">
 											<form:select path="alimento" multiple=""
-											class="chosen-select form-control" id="form-field-select-4"
-											data-placeholder="Choose a State...">
-<form:option value="-1"  >--Seleccione Alimento---</form:option>
+											class="chosen-select form-control" id="form-field-select-4">
+											<form:option value="-1">--Seleccione Alimento---</form:option>
 											<c:forEach items="${usuario.alimentos}" var="alimento">
 												<form:option value="${alimento.id}">${alimento.nombre}</form:option>
 											</c:forEach>
@@ -91,9 +92,6 @@
 									<form:errors path="alimento" cssClass="btn btn-danger btn-sm popover-error" />
 									</div>
 								</div>
-		
-								
-								
 								<div class="row">
 									<div class="col-xs-4" align=center>
 										<label>Porción:</label>
@@ -106,34 +104,7 @@
 									<form:errors path="porcion" cssClass="btn btn-danger btn-sm popover-error" />
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-xs-4" align=center>
-										<label>Fecha:</label>
-									</div>
-									<div class="col-xs-3">
-										<span class="block input-icon input-icon-right"> <form:input
-												type="date" class="form-control" path="fecha"
-												placeholder="AAAA-MM-DD" />
-										</span>
-										<form:errors path="fecha" cssClass="btn btn-danger btn-sm popover-error" />
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-4" align=center>
-										<label>Tipo:</label>
-									</div>
-									<div class="col-xs-3">
-										<form:select path="tipo">
-											<form:option value="-1"  >--Seleccione Tipo---</form:option>
-											<c:forEach items="${listaTipos}" var="tipo">
-												<form:option value="${tipo.id}">${tipo.nombre}</form:option>
-											</c:forEach>
-										</form:select>
-										<form:errors path="tipo" cssClass="btn btn-danger btn-sm popover-error" />
-									</div>
-								</div>
-								
-
+						
 								<div class="row">
 									<div class="col-s-12" align=center>
 										<button type="submit" class="btn btn-success" value="Ingresar">Ingresar</button>
