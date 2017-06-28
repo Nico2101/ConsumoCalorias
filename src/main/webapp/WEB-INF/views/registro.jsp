@@ -70,46 +70,70 @@
 									</h4>
 
 									<div class="space-6"></div>
-
-									<form:form method="post" commandName="formularioLoggin">
+									<form:form method="post" commandName="formularioRegistro">
 										<fieldset>
 											<label class="block clearfix"> <span
 												class="block input-icon input-icon-right"> <form:input
-														type="text" class="form-control" path="correo" placeholder="Ingrese su correo"/> 
-														<i class="ace-icon fa fa-user" ></i>
-
+														type="email" cssClass="form-control" path="correo"
+														placeholder="Correo" />
 											</span>
-											</label>
+
+											</label> 
 											<form:errors path="correo" cssClass="btn btn-danger btn-sm popover-error" />
-
 											<label class="block clearfix"> <span
-												class="block input-icon input-icon-right"> <form:password
-														class="form-control" path="clave"  placeholder="Ingrese su contraseña"/> 
-														<i class="ace-icon fa fa-lock"></i>
-
+												class="block input-icon input-icon-right"> <form:input
+														type="text" class="form-control" path="nombre"
+														placeholder="Nombre" /> <i class="ace-icon fa fa-user"></i>
 											</span>
-												<form:errors path="clave"
-														cssClass="btn btn-danger btn-sm popover-error" />
+											</label> 
+											<form:errors path="nombre" cssClass="btn btn-danger btn-sm popover-error" />
+											<label class="block clearfix"> <span
+												class="block input-icon input-icon-right"> <form:input
+														type="text" class="form-control" path="apellido"
+														placeholder="Apellido" /> <i class="ace-icon fa fa-user"></i>
+											</span>
+											</label> 
+											<form:errors path="apellido" cssClass="btn btn-danger btn-sm popover-error" />
+											
+											<label class="block clearfix"> <span
+												class="block input-icon input-icon-right"> <form:input value="0"
+														type="number" min="1" class="form-control" path="peso"
+														placeholder="Peso" /> <i class="ace-icon fa fa-user"></i>
+											</span>
+											</label> 
+											
+											<label class="block clearfix"> <span
+												class="block input-icon input-icon-right"> <form:input value="0"
+														type="number" min="1" class="form-control" path="maxCalorias"
+														placeholder="Maximo Calorias diarias" /> <i
+													class="ace-icon fa fa-user"></i>
+											</span>
 											</label>
+											<form:errors path="maxCalorias" cssClass="btn btn-danger btn-sm popover-error" />
+											<label class="block clearfix"> <span
+												class="block input-icon input-icon-right"> <form:input
+														type="password" class="form-control" path="clave"
+														placeholder="Contraseña" /> <i
+													class="ace-icon fa fa-lock"></i>
+											</span>
+											</label>
+											<form:errors path="clave" cssClass="btn btn-danger btn-sm popover-error" />
 
-											<div class="space"></div>
+											<div class="space-24"></div>
 
 											<div class="clearfix">
-												<label class="inline"> <input type="checkbox"
-													class="ace" />
-
-												</label> 
-												<c:if test="${usuarioNoEncontrado}">
-													<span class="btn btn-danger btn-sm popover-error">El usuario no fue encontrado. </span>
+												
+												<c:if test="${usuarioEncontrado}">
+													<span class="btn btn-danger btn-sm popover-error">El
+														usuario ya esta registrado. </span>
 												</c:if>
-												<button type="submit"
-													class="width-35 pull-right btn btn-sm btn-primary"
-													value="Ingresar">
-													<i class="ace-icon fa fa-key"></i> <span class="bigger-110">Ingresar</span>
+												<div class="space-24"></div>
+												<button type="submit" value="registrar"
+													class="width-65 pull-right btn btn-sm btn-success">
+													<span class="bigger-110">Registrar</span> <i
+														class="ace-icon fa fa-arrow-right icon-on-right"></i>
 												</button>
 											</div>
-
-											<div class="space-2"></div>
 										</fieldset>
 									</form:form>
 
@@ -121,16 +145,7 @@
 								</div>
 								<!-- /.widget-main -->
 
-								<div class="toolbar clearfix">
-									<div></div>
-
-									<div>
-										<a href="registro.htm"   class="user-signup-link">
-											Registrarse <i class="ace-icon fa fa-arrow-right"></i>
-										</a>
-									
-									</div>
-								</div>
+						
 							</div>
 							<!-- /.widget-body -->
 						</div>

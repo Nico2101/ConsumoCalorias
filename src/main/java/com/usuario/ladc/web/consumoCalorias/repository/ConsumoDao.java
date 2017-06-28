@@ -32,6 +32,7 @@ public class ConsumoDao {
         return em.createQuery("from Consumo c order by c.id").getResultList();
     }
     
+    
     @SuppressWarnings("unchecked")
 	public List<String> getListaTipos() {
         return em.createQuery("select nombre from Tipo t order by t.id").getResultList();
