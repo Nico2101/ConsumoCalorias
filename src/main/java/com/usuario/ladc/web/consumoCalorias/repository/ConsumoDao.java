@@ -52,5 +52,10 @@ public class ConsumoDao {
         em.merge(u);
         em.flush();
     }
+    
+    @SuppressWarnings("unchecked")
+	public List<Consumo> listaConsumoHoyPorUsuario(int u, String fecha) {
+        return em.createQuery("from Consumo c where c.usuario.id="+u+" and c.fecha='"+fecha+"'").getResultList();
+    }
 
 }

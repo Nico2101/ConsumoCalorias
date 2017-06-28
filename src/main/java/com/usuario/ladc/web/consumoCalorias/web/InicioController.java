@@ -1,12 +1,15 @@
 package com.usuario.ladc.web.consumoCalorias.web;
 import com.usuario.ladc.web.consumoCalorias.domain.*;
+import com.usuario.ladc.web.consumoCalorias.repository.ConsumoDao;
 import com.usuario.ladc.web.consumoCalorias.repository.UsuarioDao;
 import com.usuario.ladc.web.consumoCalorias.service.*;
 
-import java.awt.List;
+import java.util.List;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +38,12 @@ public class InicioController {
 
 
 	protected final Log logger = LogFactory.getLog(getClass());
-
+	@Autowired
+    private ConsumoDao consumoDao;
+	
+	public void setConsumoDao(ConsumoDao consumoDao) {
+	        this.consumoDao = consumoDao;
+	    }
 
 	@RequestMapping(value="inicio.htm")
 	public ModelAndView cargarPaginaInicio(HttpServletRequest request) throws ServletException{
@@ -44,6 +52,8 @@ public class InicioController {
 		if(u != null){
 			ModelAndView vista = new ModelAndView("inicio");
 			vista.addObject("usuario", u);
+			int sumaCalorias=calcularTotalCaloriasDiarias(u.getId());
+			vista.addObject("sumaCalorias", sumaCalorias);
 			return vista;
 		}else{
 			return new ModelAndView("salir");
@@ -64,5 +74,22 @@ public class InicioController {
 		}
 		
 	}
+	
+	public int calcularTotalCaloriasDiarias(int id_usuario){
+		Date fechaHoy = new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String fechaFormat=sdf.format(fechaHoy);
+		
+		List <Consumo> ConsumoUsuarioHoy=consumoDao.listaConsumoHoyPorUsuario(id_usuario,fechaFormat);
+		int suma=0;
+		float calorias=0;
+		for (Consumo c :  ConsumoUsuarioHoy){
+			calorias= c.getPorcion()*c.getAlimento().getCalorias()/c.getAlimento().getCantidad();
+			suma+=calorias;
+		}
+		
+		return suma;
+	}
+   
 	
 }
