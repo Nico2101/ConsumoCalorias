@@ -53,6 +53,9 @@ public class InicioController {
 			ModelAndView vista = new ModelAndView("inicio");
 			vista.addObject("usuario", u);
 			int sumaCalorias=calcularTotalCaloriasDiarias(u.getId());
+			int maxCalorias=u.getMaxCalorias();
+			int porcentajeCalorias=calcularProcentajeCaloriasDiarias(maxCalorias,u.getId());
+			vista.addObject("porcentajeCalorias", porcentajeCalorias);
 			vista.addObject("sumaCalorias", sumaCalorias);
 			return vista;
 		}else{
@@ -90,6 +93,12 @@ public class InicioController {
 		
 		return suma;
 	}
+	public int calcularProcentajeCaloriasDiarias(int maxCalorias, int id_usuario){
+    	int porcentaje=0;
+    	int totalCaloriasDiarias=calcularTotalCaloriasDiarias(id_usuario);
+    	porcentaje= totalCaloriasDiarias*100/maxCalorias;
+    	return porcentaje;
+    }
    
 	
 }

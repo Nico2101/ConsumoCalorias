@@ -88,6 +88,9 @@ public class LogginController {
     		HttpSession session = request.getSession(true);
 			session.setAttribute("usuario", u);
 			int sumaCalorias=calcularTotalCaloriasDiarias(u.getId());
+			int maxCalorias=u.getMaxCalorias();
+			int porcentajeCalorias=calcularProcentajeCaloriasDiarias(maxCalorias,u.getId());
+			vista.addObject("porcentajeCalorias", porcentajeCalorias);
 			vista.addObject("sumaCalorias", sumaCalorias);
 			
     		return vista;
@@ -123,6 +126,12 @@ public class LogginController {
 		return suma;
 	}
    
+    public int calcularProcentajeCaloriasDiarias(int maxCalorias, int id_usuario){
+    	int porcentaje=0;
+    	int totalCaloriasDiarias=calcularTotalCaloriasDiarias(id_usuario);
+    	porcentaje= totalCaloriasDiarias*100/maxCalorias;
+    	return porcentaje;
+    }
 
     
     
