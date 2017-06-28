@@ -29,7 +29,14 @@ public class CategoriaDao {
         return em.createQuery("from Categoria c order by c.id").getResultList();
     }
     
-
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    public Categoria getCategoria(int id) {
+        return (Categoria)em.createQuery("from Categoria c where id="+id+"").getResultList().get(0);
+    }
+    
+    
+    
     @Transactional(readOnly = false)
     public void saveCategoria(Categoria c) {
         em.merge(c);

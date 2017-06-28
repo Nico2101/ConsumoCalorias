@@ -91,6 +91,8 @@ public class RegistroController {
         
     	if(verificaCorreo.size()== 0){
     		usuarioDao.saveUsuario(u);
+    		HttpSession session = request.getSession(true);
+			session.setAttribute("usuario", u);
     	    ModelAndView vista = new ModelAndView("inicio");
     	    vista.addObject(u);
     	    return vista;

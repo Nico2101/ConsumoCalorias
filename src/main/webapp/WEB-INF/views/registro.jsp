@@ -96,14 +96,14 @@
 											<form:errors path="apellido" cssClass="btn btn-danger btn-sm popover-error" />
 											
 											<label class="block clearfix"> <span
-												class="block input-icon input-icon-right"> <form:input value="0"
+												class="block input-icon input-icon-right"> <form:input
 														type="number" min="1" class="form-control" path="peso"
 														placeholder="Peso" /> <i class="ace-icon fa fa-user"></i>
 											</span>
 											</label> 
 											
 											<label class="block clearfix"> <span
-												class="block input-icon input-icon-right"> <form:input value="0"
+												class="block input-icon input-icon-right"> <form:input 
 														type="number" min="1" class="form-control" path="maxCalorias"
 														placeholder="Maximo Calorias diarias" /> <i
 													class="ace-icon fa fa-user"></i>
