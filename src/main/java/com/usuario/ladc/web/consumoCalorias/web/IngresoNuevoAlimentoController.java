@@ -2,7 +2,6 @@ package com.usuario.ladc.web.consumoCalorias.web;
 import java.util.List;
 import com.usuario.ladc.web.consumoCalorias.domain.*;
 import com.usuario.ladc.web.consumoCalorias.repository.*;
-import com.usuario.ladc.web.consumoCalorias.repository.ConsumoDao;
 import com.usuario.ladc.web.consumoCalorias.service.*;
 
 import java.io.IOException;
@@ -43,6 +42,20 @@ public class IngresoNuevoAlimentoController {
     
     @Autowired
     private CategoriaDao categoriaDao;
+    
+    @Autowired
+    private ConsumoDao consumoDao;
+   
+    @Autowired
+    private AlimentoDao alimentoDao;
+    
+    public void setConsumoDao(ConsumoDao consumoDao) {
+        this.consumoDao = consumoDao;
+    }
+    
+    public void setAlimentoDao(AlimentoDao alimentoDao) {
+        this.alimentoDao = alimentoDao;
+    }
 
     public void setCategoriaDao(CategoriaDao categoriaDao) {
         this.categoriaDao = categoriaDao;
@@ -83,6 +96,18 @@ public class IngresoNuevoAlimentoController {
 	        System.out.println("categoria: "+categoria+"\nId nombre: "+nombre+"\ncantidad: "+cantidad+"\nmedida: "+medida+"\ncalorias: "+calorias);
 	        
 	        //Insertar resto de la lógica
+	        
+	        Categoria c = new Categoria();
+	        c=categoriaDao.getCategoria(categoria);
+	        
+	        Alimento a = new Alimento();
+	        a.setCategoria(c);
+	        a.setNombre(nombre);
+	        a.setCantidad(cantidad);
+	        a.setMedida(medida);
+	        a.setCalorias(calorias);
+	        a.setUsuario(u);
+	        alimentoDao.saveAlimento(a);
 	        
     		ModelAndView vista = new ModelAndView("inicio");
     		vista.addObject("usuario", u);
