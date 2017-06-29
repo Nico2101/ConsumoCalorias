@@ -26,7 +26,7 @@ public class AlimentoDao {
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
     public List<Alimento> getListaAlimentos(Integer usuario) {
-        return em.createQuery("from Alimento a where a.id_usuario= '"+usuario+"'a order by a.id").getResultList();
+        return em.createQuery("from Alimento a where a.usuario.id= "+usuario+" or a.usuario.id = 0 order by a.id").getResultList();
     }
     
     @Transactional(readOnly = true)

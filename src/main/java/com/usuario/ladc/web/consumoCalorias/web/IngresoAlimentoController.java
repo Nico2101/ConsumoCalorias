@@ -69,7 +69,8 @@ public class IngresoAlimentoController {
 		if(u != null){
 			ModelAndView vista = new ModelAndView("ingresoAlimento");
 			FormularioIngresoAlimento f = formularioAntiguo == null ? new FormularioIngresoAlimento() : formularioAntiguo;
-	    	vista.addObject(f);
+			vista.addObject(f);
+			vista.addObject("listaAlimentos",alimentoDao.getListaAlimentos(u.getId()));
 	    	vista.addObject("usuario",u);
 	    	vista.addObject("listaTipos",tipoDao.getListaTipos());
 	    	return vista;
@@ -110,8 +111,6 @@ public class IngresoAlimentoController {
 	        c.setUsuario(u);
 	        
 	        consumoDao.saveConsumo(c);
-	        
-	        //Insertar aquí el resto de la lógica
 	        
 	        if(fecha != null){
 	    		logger.info("Ir a inicio");
