@@ -31,19 +31,11 @@ public class ConsumoDao {
         return em.createQuery("from Consumo c order by c.id").getResultList();
     }
     
+    @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
-	public List<String> getListaTipos() {
-        return em.createQuery("select nombre from Tipo t order by t.id").getResultList();
-    }
-    
-    @SuppressWarnings("unchecked")
-	public List<String> getListaAlimentos() {
-        return em.createQuery("select nombre from Alimento a order by a.id").getResultList();
-    }
-   
-	public void insertarConsumo(int id, Date fecha, float porcion, int id_usuario, int id_tipo, int id_alimento){
-		System.out.println("fefe" + fecha);
-        em.createQuery("insert into Consumo(id,fecha, porcion, id_usuario, id_tipo, id_alimento) select id, fecha, porcion, id_usuario, id_tipo, id_alimento").executeUpdate();
+    public List<Consumo> getConsumosDeUnUsuarioYUnaCategoria(int idUsuario, int idCategoria, String fechaInicio, String fechaFin) {
+        String consulta = "from Consumo c where c.usuario.id="+idUsuario+" and c.fecha >= '"+fechaInicio+"' and c.fecha < '"+fechaFin+"' and c.alimento.categoria.id = "+idCategoria+"";
+    	return em.createQuery(consulta).getResultList();
     }
 
     @Transactional(readOnly = false)
