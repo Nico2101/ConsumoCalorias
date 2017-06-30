@@ -18,10 +18,9 @@ public class FormularioIngresoAlimento {
     /** Logger for this class and subclasses */
     protected final Log logger = LogFactory.getLog(getClass());
     
-    @NotEmpty(message="La fecha no ha sido especificada")
-    private String fecha;
-    
-
+    //@NotEmpty(message="La fecha no ha sido especificada")
+    //private Date fecha;
+ 
     @Min(value=0,message="La porción no ha sido especificada")
     private float porcion;
     
@@ -31,14 +30,14 @@ public class FormularioIngresoAlimento {
     @Min(value=0,message="El alimento no ha sido especificado")
     private int alimento;
 
-	public void setFecha(String fecha ) {
+	/**public void setFecha(Date fecha ) {
 		this.fecha = fecha;
 	}
     
-    public String getFecha(){
+    public Date getFecha(){
     	return this.fecha;
     }
-	
+	*/
 	public Float getPorcion() {
 		return porcion;
 	}

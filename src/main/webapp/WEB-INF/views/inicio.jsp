@@ -73,12 +73,12 @@
 										<div class="infobox-progress">
 											<div class="easy-pie-chart percentage" data-percent="65"
 												data-size="40">
-												<span class="percent">42</span>%
+												<span class="percent">${porcentajeCalorias}</span>%
 											</div>
 										</div>
 
 										<div class="infobox-data">
-											<span class="infobox-text"> Calorias 1233</span>
+											<span class="infobox-text"> Calorias ${sumaCalorias}</span>
 
 											<div class="infobox-content">
 												<span class="bigger-200"></span>

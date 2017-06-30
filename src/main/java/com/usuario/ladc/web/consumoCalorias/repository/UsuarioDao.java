@@ -40,11 +40,26 @@ public class UsuarioDao {
     	}	
 		return null;
     }
+    
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    public List<Usuario> getCorreos(String correo) {
+    	List<Usuario> resultado = em.createQuery("from Usuario u where u.correo = '"+correo+"'").getResultList();
+    	
+		return resultado;
+    }
 
     @Transactional(readOnly = false)
     public void saveUsuario(Usuario u) {
         em.merge(u);
         em.flush();
+    }
+    
+    @SuppressWarnings("unchecked")
+    public Usuario getUsuarioRegistrado(String correo) {
+    	
+    	
+		return (Usuario) em.createQuery("from Usuario u where u.correo = '"+correo+"'").getResultList().get(0);
     }
 
 }
