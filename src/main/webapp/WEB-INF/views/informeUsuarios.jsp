@@ -62,23 +62,24 @@
 					<!-- /.page-header -->
 
 					<div class="row">
-						<div class="col-xs-12">
-							<!-- PAGE CONTENT BEGINS -->
-
-
-							<div class="row">
 								<div class="space-6"></div>
-								<div class="col-sm-10 infobox-container">
-									<h1>Bienvenido a la interfaz de administrador</h1>
-									<a href="informeUsuarios.htm" class="btn btn-app btn-primary" style="width:70%">Ver Informe de Uso de la plataforma.</a>
+								<div class="col-sm-10 infobox-container" id="informe">
+										<h1>Informe de uso de plataforma</h1>
+										
+										<table id="simple-table" class="table  table-bordered table-hover">
+											<thead>
+												<tr>
+													<th class="lead" style="width:30%">Total Usuarios</th>
+													<th class="lead" style="width:30%">${ totalUsuarios}</th>
+												</tr>
+											</thead>
+											
+											
+										</table>
 								</div>
+								<button class="btn btn-danger" onClick="generarPDF()">Generar PDF</button>
+								
 							</div>
-							<!-- /.row -->
-							<!-- PAGE CONTENT ENDS -->
-							<!-- PAGE CONTENT ENDS -->
-						</div>
-						<!-- /.col -->
-					</div>
 					<!-- /.row -->
 				</div>
 				<!-- /.page-content -->

@@ -61,5 +61,12 @@ public class UsuarioDao {
     	
 		return (Usuario) em.createQuery("from Usuario u where u.correo = '"+correo+"'").getResultList().get(0);
     }
+    
+    @SuppressWarnings("unchecked")
+    public List<Usuario> TotalUsuarios() {
+    	List<Usuario> resultado = em.createQuery("select nombre from Usuario").getResultList();
+    	
+		return resultado;
+    }
 
 }
