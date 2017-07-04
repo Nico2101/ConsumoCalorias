@@ -64,7 +64,7 @@ public class UsuarioDao {
     
     @SuppressWarnings("unchecked")
     public List<Usuario> TotalUsuarios() {
-    	List<Usuario> resultado = em.createQuery("select nombre from Usuario").getResultList();
+    	List<Usuario> resultado = em.createQuery("select id,nombre,apellido from Usuario").getResultList();
     	
 		return resultado;
     }

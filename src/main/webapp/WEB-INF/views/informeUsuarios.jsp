@@ -7,6 +7,7 @@
 <%@ include file="cabecera.jsp"%>
 <!-- HTML meta refresh URL redirection -->
 
+
 </head>
 
 <body class="no-skin">
@@ -66,14 +67,28 @@
 								<div class="col-sm-10 infobox-container" id="informe">
 										<h1>Informe de uso de plataforma</h1>
 										
-										<table id="simple-table" class="table  table-bordered table-hover">
+										<table id="informeUsuario" class="table  table-bordered table-hover">
 											<thead>
 												<tr>
 													<th class="lead" style="width:30%">Total Usuarios</th>
 													<th class="lead" style="width:30%">${ totalUsuarios}</th>
 												</tr>
+												
+												<tr>
+													<th class="lead" style="width:30%">Nombre</th>
+													<th class="lead" style="width:30%">Apellido</th>
+												</tr>
 											</thead>
-											
+											<tbody>
+												<c:forEach items="${datosUsuario}" var="valores">
+													<tr>
+														<td class="lead">${valores[0]}</td>
+														<td class="lead">${valores[1]}</td>
+														
+													</tr>
+												</c:forEach>
+												
+											</tbody>
 											
 										</table>
 								</div>
@@ -102,5 +117,7 @@
 
 	<%@ include file="scripts.jsp"%>
 </body>
+
+
 
 </html>

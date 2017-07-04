@@ -67,7 +67,7 @@
 									</div>
 									<div class="col-xs-3">
 										<form:select path="tipo" multiple=""
-											class="chosen-select form-control" id="form-field-select-4">
+											class="chosen-select form-control" id="form-field-select">
 											<form:option value="-1"  >--Seleccione Tipo---</form:option>
 											<c:forEach items="${listaTipos}" var="tipo">
 												<form:option value="${tipo.id}">${tipo.nombre}</form:option>
@@ -76,6 +76,7 @@
 										<form:errors path="tipo" cssClass="btn btn-danger btn-sm popover-error" />
 									</div>
 								</div>
+								<div class="space-4"></div>
 								<div class="row">
 									<div class="col-sm-4" align=center>
 										<label>Alimento:</label>
@@ -92,6 +93,7 @@
 									<form:errors path="alimento" cssClass="btn btn-danger btn-sm popover-error" />
 									</div>
 								</div>
+								<div class="space-4"></div>
 								<div class="row">
 									<div class="col-xs-4" align=center>
 										<label>Porción:</label>
@@ -104,7 +106,7 @@
 									<form:errors path="porcion" cssClass="btn btn-danger btn-sm popover-error" />
 									</div>
 								</div>
-						
+							<div class="space-4"></div>
 								<div class="row">
 									<div class="col-s-12" align=center>
 										<button type="submit" class="btn btn-success" value="Ingresar">Ingresar</button>

@@ -39,10 +39,25 @@ public class informeUsuariosController {
 		if(u != null){
 			
 			List <Usuario> usuarios= usuarioDao.getListaUsuarios();
-			
+			List<String[]> datosUsuario = new ArrayList<String[]>();
 			int totalUsuarios=usuarios.size()-1;
 	
 			ModelAndView vista = new ModelAndView("informeUsuarios");
+			String nombre="";
+			
+			int i=0;
+			for(Usuario user:usuarios){
+				if(user.getId()!=0){
+					String nombreYApellido[]=new String [2];
+					nombreYApellido[0]=user.getNombre();
+					nombreYApellido[1]=user.getApellido();
+					System.out.println(nombreYApellido[0] + " "+nombreYApellido[1]);
+					datosUsuario.add(nombreYApellido);
+				}
+				
+				
+			}
+			vista.addObject("datosUsuario",datosUsuario);
 		
 			vista.addObject("usuario", u);
 			vista.addObject("totalUsuarios", totalUsuarios);
