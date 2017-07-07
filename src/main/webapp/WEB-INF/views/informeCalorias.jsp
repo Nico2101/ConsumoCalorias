@@ -6,17 +6,10 @@
 <head>
 <%@ include file="cabecera.jsp"%>
 <!-- HTML meta refresh URL redirection -->
-
 <script>
-	
-	function generarPDF(){
-		generarArchivo('application/pdf','pdf');
-	   
-	}
-	function generarArchivo(direccion, extension){
-		var htmltable= document.getElementById('informe');
-	    var html = htmltable.outerHTML;
-	    window.open(direccion + ',' + escape(html));
+	function ejecutar(){
+		var valor = $("#informe").html();
+		$("#contenido").val(valor);
 	}
 </script>
 
@@ -82,9 +75,11 @@
 							<div class="row">
 								<div class="space-6"></div>
 								<div class="col-sm-10 infobox-container" id="informe">
-										<h1>Informe acerca del consumo de calorias</h1>
-										<p class="lead">${cabecera}</p>
-										<table id="simple-table" class="table  table-bordered table-hover">
+										<h1 align="center">Informe acerca del consumo de calorias</h1>
+										
+										<p align="center" class="lead">${cabecera}</p>
+										<hr>
+										<table id="simple-table" class="table  table-bordered table-hover" border="1">
 											<thead>
 												<tr>
 													<th class="lead">Categoría</th>
@@ -108,7 +103,10 @@
 											</thead>
 										</table>
 								</div>
-								<button class="btn btn-danger" onClick="generarPDF()">Generar PDF</button>
+									<form:form method="post" commandName="htmlInforme" action="generarPDF.htm">
+										<form:textarea path="contenido" id="contenido" cssClass="hidden"></form:textarea>
+										<button type="submit" class="btn btn-danger" id="enviar" onclick="ejecutar();">Generar PDF</button>
+									</form:form>
 								
 							</div>
 							<!-- /.row -->

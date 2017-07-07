@@ -6,7 +6,12 @@
 <head>
 <%@ include file="cabecera.jsp"%>
 <!-- HTML meta refresh URL redirection -->
-
+<script>
+	function ejecutar(){
+		var valor = $("#informe").html();
+		$("#contenido").val(valor);
+	}
+</script>
 
 </head>
 
@@ -65,25 +70,25 @@
 					<div class="row">
 								<div class="space-6"></div>
 								<div class="col-sm-10 infobox-container" id="informe">
-										<h1>Informe de uso de plataforma</h1>
-										
-										<table id="informeUsuario" class="table  table-bordered table-hover">
+										<h1 align="center"><u>Informe de uso de plataforma</u></h1>
+										<br></br>
+										<table id="informeUsuario" class="table  table-bordered table-hover" border="1">
 											<thead>
 												<tr>
-													<th class="lead" style="width:30%">Total Usuarios</th>
-													<th class="lead" style="width:30%">${ totalUsuarios}</th>
+													<th align="center" class="lead" style="width:30%"><b>Total Usuarios</b></th>
+													<th align="center" class="lead" style="width:30%"><b>${ totalUsuarios}</b></th>
 												</tr>
 												
 												<tr>
-													<th class="lead" style="width:30%">Nombre</th>
-													<th class="lead" style="width:30%">Apellido</th>
+													<th  class="lead" style="width:30%"><b>Nombre</b></th>
+													<th  class="lead" style="width:30%"><b>Apellido</b></th>
 												</tr>
 											</thead>
 											<tbody>
 												<c:forEach items="${datosUsuario}" var="valores">
 													<tr>
 														<td class="lead">${valores[0]}</td>
-														<td class="lead">${valores[1]}</td>
+														<td  class="lead">${valores[1]}</td>
 														
 													</tr>
 												</c:forEach>
@@ -92,7 +97,11 @@
 											
 										</table>
 								</div>
-								<button class="btn btn-danger" onClick="generarPDF()">Generar PDF</button>
+								
+								<form:form method="post" commandName="htmlInformeTotalUsuarios" action="generarPDFTotalUsuarios.htm">
+										<form:textarea path="contenido" id="contenido" cssClass="hidden"></form:textarea>
+										<button type="submit" class="btn btn-danger" id="enviar" onclick="ejecutar();">Generar PDF</button>
+									</form:form>
 								
 							</div>
 					<!-- /.row -->
