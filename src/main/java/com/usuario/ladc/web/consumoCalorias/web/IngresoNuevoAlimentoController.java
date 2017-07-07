@@ -79,7 +79,7 @@ public class IngresoNuevoAlimentoController {
     }
     
     @RequestMapping(value="IngresoNuevoAlimento.htm", method = RequestMethod.POST)
-    public ModelAndView guardarAlimento(HttpServletRequest request, @Valid FormularioIngresoNuevoAlimento formulario, BindingResult result) throws ServletException, IOException	
+    public ModelAndView guardarAlimento(HttpServletRequest request, @Valid FormularioIngresoNuevoAlimento formulario, @Valid FormularioIngresoAlimento formulario2,BindingResult result) throws ServletException, IOException	
     {
     	HttpSession session = request.getSession(true);
 		Usuario u = (Usuario) session.getAttribute("usuario");
@@ -110,13 +110,14 @@ public class IngresoNuevoAlimentoController {
 	        a.setUsuario(u);
 	        alimentoDao.saveAlimento(a);
 	        
-    		ModelAndView vista = new ModelAndView("inicio");
+    		ModelAndView vista = new ModelAndView("ingresoAlimento");
     		int sumaCalorias=calcularTotalCaloriasDiarias(u.getId());
 			vista.addObject("sumaCalorias", sumaCalorias);
 			int maxCalorias=u.getMaxCalorias();
 			int porcentajeCalorias=calcularProcentajeCaloriasDiarias(maxCalorias,u.getId());
 			vista.addObject("porcentajeCalorias", porcentajeCalorias);
     		vista.addObject("usuario", u);
+    		vista.addObject(formulario2);
     		
     		return vista;
 		}else{
