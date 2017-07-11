@@ -15,7 +15,7 @@
 	<div class="navbar-header pull-left">
 		<a href="inicio.htm" class="navbar-brand">
 			<small>
-				<i class="glyphicon glyphicon-apple"></i>
+				<i class="glyphicon glyphicon-apple green"></i>
 				Nutrición y Vida Saludable
 			</small>
 		</a>

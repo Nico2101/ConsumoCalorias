@@ -63,16 +63,22 @@ public class IngresoAlimentoController {
         
     @RequestMapping(value="ingresoAlimento.htm", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request,FormularioIngresoAlimento formularioAntiguo) throws ServletException{
+    public ModelAndView recargarFormularioIngresoAlimento(HttpServletRequest request,FormularioIngresoAlimento formularioAntiguo, boolean estado) throws ServletException{
     	HttpSession session = request.getSession(true);
 		Usuario u = (Usuario) session.getAttribute("usuario");
 		if(u != null){
 			ModelAndView vista = new ModelAndView("ingresoAlimento");
 			FormularioIngresoAlimento f = formularioAntiguo == null ? new FormularioIngresoAlimento() : formularioAntiguo;
 			vista.addObject(f);
+			vista.addObject("alimentoAgregado",estado);
 			vista.addObject("listaAlimentos",alimentoDao.getListaAlimentos(u.getId()));
 	    	vista.addObject("usuario",u);
 	    	vista.addObject("listaTipos",tipoDao.getListaTipos());
+	    	int sumaCalorias=calcularTotalCaloriasDiarias(u.getId());
+			int maxCalorias=u.getMaxCalorias();
+			int porcentajeCalorias=calcularProcentajeCaloriasDiarias(maxCalorias,u.getId());
+			vista.addObject("porcentajeCalorias", porcentajeCalorias);
+			vista.addObject("sumaCalorias", sumaCalorias);
 	    	return vista;
 		}else{
 			return new ModelAndView("salir");
@@ -85,7 +91,7 @@ public class IngresoAlimentoController {
     	
     	if(u != null){
 	        if (result.hasErrors()) {
-	            return recargarFormularioIngresoAlimento(request, formulario); 
+	            return recargarFormularioIngresoAlimento(request, formulario, false); 
 	        }
 	    	
 	        float porcion = formulario.getPorcion();
@@ -111,21 +117,8 @@ public class IngresoAlimentoController {
 	        c.setUsuario(u);
 	        
 	        consumoDao.saveConsumo(c);
-	        
-	        if(fecha != null){
-	    		logger.info("Ir a inicio");
-	    		ModelAndView i = new ModelAndView("inicio");
-	    		int sumaCalorias=calcularTotalCaloriasDiarias(u.getId());
-				i.addObject("sumaCalorias", sumaCalorias);
-				int maxCalorias=u.getMaxCalorias();
-				int porcentajeCalorias=calcularProcentajeCaloriasDiarias(maxCalorias,u.getId());
-				i.addObject("porcentajeCalorias", porcentajeCalorias);
-	    		i.addObject("usuario", u);
-	    		
-	    		return i;
-	        }
 	         
-	        return recargarFormularioIngresoAlimento(request,null);
+	        return recargarFormularioIngresoAlimento(request,null,true);
     	}else{
     		//Redireccionar al loggin
     		logger.info("Ir a Loggin");
@@ -146,7 +139,7 @@ public class IngresoAlimentoController {
 		int suma=0;
 		float calorias=0;
 		for (Consumo c :  ConsumoUsuarioHoy){
-			calorias= c.getPorcion()*c.getAlimento().getCalorias()/c.getAlimento().getCantidad();
+			calorias= c.getPorcion()*c.getAlimento().getCalorias();
 			suma+=calorias;
 		}
 		

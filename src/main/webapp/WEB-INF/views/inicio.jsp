@@ -71,8 +71,8 @@
 								<div class="col-sm-10 infobox-container">
 									<div class="infobox infobox-blue2">
 										<div class="infobox-progress">
-											<div class="easy-pie-chart percentage" data-percent="65"
-												data-size="${porcentajeCalorias}">
+											<div class="easy-pie-chart percentage" data-percent="${porcentajeCalorias}"
+												data-size="40">
 												<span class="percent">${porcentajeCalorias}</span>%
 											</div>
 										</div>

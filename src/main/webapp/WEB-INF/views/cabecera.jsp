@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="assets/css/select2.min.css" />
 
 <!-- page specific plugin styles -->
+	<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
+		<link rel="stylesheet" href="assets/css/jquery.gritter.min.css" />
 
 <!-- text fonts -->
 <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />

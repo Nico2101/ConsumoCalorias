@@ -123,6 +123,10 @@
 
 											<div class="clearfix">
 												
+												
+												
+												
+												
 												<c:if test="${usuarioEncontrado}">
 													<span class="btn btn-danger btn-sm popover-error">El
 														usuario ya esta registrado. </span>

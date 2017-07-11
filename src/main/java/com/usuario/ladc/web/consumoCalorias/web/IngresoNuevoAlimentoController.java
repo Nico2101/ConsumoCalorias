@@ -134,7 +134,7 @@ public class IngresoNuevoAlimentoController {
 		int suma=0;
 		float calorias=0;
 		for (Consumo c :  ConsumoUsuarioHoy){
-			calorias= c.getPorcion()*c.getAlimento().getCalorias()/c.getAlimento().getCantidad();
+			calorias= c.getPorcion()*c.getAlimento().getCalorias();
 			suma+=calorias;
 		}
 		

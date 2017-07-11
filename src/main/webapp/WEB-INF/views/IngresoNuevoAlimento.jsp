@@ -103,7 +103,7 @@ try{ace.settings.loadState('main-container')}catch(e){}
 									<div class="col-xs-3">
 										<form:select path="medida" class="chosen-select form-control" id="form-field-select-4">
 											<form:option value="">Seleccione</form:option>
-											<form:option value="ml">Milígramos</form:option>
+											<form:option value="ml">Mililitros</form:option>
 											<form:option value="gr">Gramos</form:option>
 										</form:select>
 										
