@@ -104,7 +104,7 @@
 											class="chosen-select form-control" id="form-field-select-4">
 											<form:option value="-1">--Seleccione Alimento---</form:option>
 											<c:forEach items="${listaAlimentos}" var="alimento">
-												<form:option value="${alimento.id}">${alimento.nombre}</form:option>
+												<form:option value="${alimento.id}">${alimento.nombre} (${alimento.cantidad}-${alimento.medida})</form:option>
 											</c:forEach>
 										</form:select>
 										<form:errors path="alimento"

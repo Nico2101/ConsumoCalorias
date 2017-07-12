@@ -87,7 +87,7 @@ public class InformeCaloriasController {
 				int promedioCategoria = 0;
 				
 				for(Consumo cons : resultado){
-					totalCaloriasCategoria += (cons.getPorcion() * cons.getAlimento().getCalorias() / cons.getAlimento().getCantidad());
+					totalCaloriasCategoria += (cons.getPorcion() * cons.getAlimento().getCalorias());
 				}
 				
 				caloriasTotales += totalCaloriasCategoria;
